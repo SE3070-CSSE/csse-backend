@@ -32,13 +32,8 @@ public class OrderHttpController {
     @PostMapping("/orders")
     public ResponseEntity<Object> createItem(@RequestBody PurchaseOrder order) {
         PurchaseOrder savedItem = orderService.saveOrder(order);
-        for (Item i : savedItem.getItems()) {
-            System.out.println("price of item is :" + i.getPrice());
-        }
-
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedItem.get_id()).toUri();
-
         return ResponseEntity.created(location).build();
 
     }
