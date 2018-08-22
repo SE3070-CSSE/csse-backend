@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static csse.auth.SecurityConstants.HEADER_STRING;
-import static csse.auth.SecurityConstants.SECRET;
-import static csse.auth.SecurityConstants.TOKEN_PREFIX;
+import static csse.auth.SecurityConstants.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 

@@ -1,7 +1,5 @@
 package csse.orders;
 
-import csse.items.Item;
-import csse.items.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
