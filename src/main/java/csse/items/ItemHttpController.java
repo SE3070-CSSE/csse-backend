@@ -1,6 +1,7 @@
 package csse.items;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,29 +20,23 @@ public class ItemHttpController {
     }
 
     @GetMapping("/items")
-    public List<Item> retrieveAllItems() {
+    public List<Item> getAllItemsEndpoint() {
         return itemService.fetchAll();
     }
 
     @GetMapping("/items/{name}")
-    public Item retrieveItem(@PathVariable String name) {
+    public Item getItemByNameEndpoint(@PathVariable String name) {
         return itemService.fetchByItemName(name);
     }
 
     @DeleteMapping("/items")
-    public void dropTable() {
+    public void dropTableEndpoint() {
         itemService.cleanDatabase();
     }
 
     @PostMapping("/items")
-    public ResponseEntity<Object> createItem(@RequestBody Item item) {
-        Item savedItem = itemService.saveItem(item);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedItem.get_id()).toUri();
-
-        return ResponseEntity.created(location).build();
-
+    public ResponseEntity<Object> createItemEndpoint(@RequestBody Item item) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(itemService.saveItem(item));
     }
 
 }
