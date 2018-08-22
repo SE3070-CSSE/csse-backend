@@ -1,7 +1,5 @@
 package csse.items;
 
-import csse.customer.Customer;
-import csse.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +9,12 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-public class ItemController {
+public class ItemHttpController {
 
     private final ItemService itemService;
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    public ItemHttpController(ItemService itemService) {
         this.itemService = itemService;
     }
 
