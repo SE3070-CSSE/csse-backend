@@ -2,7 +2,7 @@ package csse.orders;
 
 
 import csse.items.Item;
-import org.bson.types.ObjectId;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class PurchaseOrder {
 
     @Id
-    private ObjectId _id;
+    private String _id;
     @DBRef
     private List<Item> items;
     private String supplierName;
@@ -32,11 +32,11 @@ public class PurchaseOrder {
         this.isDraftPurchaseOrder = isDraftPurchaseOrder;
     }
 
-    public ObjectId get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(ObjectId _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 

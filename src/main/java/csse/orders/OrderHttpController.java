@@ -2,6 +2,7 @@ package csse.orders;
 
 import csse.items.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -30,12 +31,8 @@ public class OrderHttpController {
     }
 
     @PostMapping("/orders")
-    public ResponseEntity<Object> createItem(@RequestBody PurchaseOrder order) {
-        PurchaseOrder savedItem = orderService.saveOrder(order);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedItem.get_id()).toUri();
-        return ResponseEntity.created(location).build();
-
+    public ResponseEntity createItem(@RequestBody PurchaseOrder order) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(order));
     }
 
 }
