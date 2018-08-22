@@ -24,7 +24,7 @@ public class CustomerService {
     }
 
     List<Customer> fetchAll() {
-        return  repository.findAll();
+        return repository.findAll();
     }
 
     Customer fetchByFirstName(String name) {

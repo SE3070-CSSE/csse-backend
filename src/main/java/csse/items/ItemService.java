@@ -24,7 +24,7 @@ public class ItemService {
     }
 
     List<Item> fetchAll() {
-        return  repository.findAll();
+        return repository.findAll();
     }
 
     Item fetchByItemName(String itemName) {

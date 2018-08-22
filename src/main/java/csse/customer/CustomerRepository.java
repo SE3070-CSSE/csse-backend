@@ -1,8 +1,8 @@
 package csse.customer;
 
-import java.util.List;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import java.util.List;
 
 public interface CustomerRepository extends MongoRepository<Customer, String> {
 
