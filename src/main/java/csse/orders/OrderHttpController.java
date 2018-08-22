@@ -21,17 +21,17 @@ public class OrderHttpController {
     }
 
     @GetMapping("/orders")
-    public List<PurchaseOrder> retrieveAllItems() {
+    public List<PurchaseOrder> getAllOrdersEndpoint() {
         return orderService.fetchAll();
     }
 
     @DeleteMapping("/orders")
-    public void dropTable() {
+    public void dropTableEndpoint() {
         orderService.cleanDatabase();
     }
 
     @PostMapping("/orders")
-    public ResponseEntity createItem(@RequestBody PurchaseOrder order) {
+    public ResponseEntity createOrderEndpoint(@RequestBody PurchaseOrder order) {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(order));
     }
 
