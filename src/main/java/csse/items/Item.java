@@ -1,6 +1,5 @@
 package csse.items;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class Item {
@@ -13,8 +12,8 @@ public class Item {
     private String deliveryInformation;
     private boolean isRestricted;
 
-    public Item(String itemName, String category, Double price,
-                String deliveryInformation, boolean isRestricted) {
+    public Item(String itemName, String category, String deliveryInformation,
+                Double price, boolean isRestricted) {
         this._id = _id;
         this.itemName = itemName;
         this.category = category;

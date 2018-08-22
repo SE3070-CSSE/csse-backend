@@ -1,23 +1,20 @@
 package csse.orders;
 
-import csse.items.Item;
-import csse.items.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
-public class OrderController {
+public class OrderHttpController {
 
     private final OrderService orderService;
 
     @Autowired
-    public OrderController(OrderService orderService) {
+    public OrderHttpController(OrderService orderService) {
         this.orderService = orderService;
     }
 
@@ -33,11 +30,8 @@ public class OrderController {
 
     @PostMapping("/orders")
     public ResponseEntity<Object> createItem(@RequestBody PurchaseOrder order) {
-        PurchaseOrder savedItem = orderService.saveOrder(order);
-        for (Item i : savedItem.getItems()) {
-            System.out.println("price of item is :" + i.getPrice());
-        }
 
+        PurchaseOrder savedItem = orderService.saveOrder(order);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedItem.get_id()).toUri();
 
