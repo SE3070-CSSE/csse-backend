@@ -1,7 +1,7 @@
 package csse.auth;
 
 import csse.users.ApplicationUser;
-import csse.users.UserRepository;
+import csse.users.UserDAO;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,16 +15,16 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
-    private UserRepository userRepository;
+    private UserDAO userDAO;
 
-    public UserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserDetailsServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        ApplicationUser applicationUser = userRepository.findByUsername(username);
+        ApplicationUser applicationUser = userDAO.findByUsername(username);
         if (applicationUser == null) {
             throw new UsernameNotFoundException(username);
         }

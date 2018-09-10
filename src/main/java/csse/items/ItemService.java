@@ -8,10 +8,10 @@ import java.util.List;
 @Service
 public class ItemService {
 
-    private final ItemRepository repository;
+    private final ItemDAO repository;
 
     @Autowired
-    public ItemService(ItemRepository repository) {
+    public ItemService(ItemDAO repository) {
         this.repository = repository;
     }
 

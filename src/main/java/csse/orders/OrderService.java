@@ -9,10 +9,10 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    private final OrderRepository repository;
+    private final OrderDAO repository;
 
     @Autowired
-    public OrderService(OrderRepository repository) {
+    public OrderService(OrderDAO repository) {
         this.repository = repository;
     }
 
