@@ -47,11 +47,11 @@ public class ApplicationUser {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(List<String> roles) {
+        this.roles = roles;
     }
 }
