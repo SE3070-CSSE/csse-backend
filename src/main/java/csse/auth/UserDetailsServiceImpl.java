@@ -9,13 +9,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public UserDetailsServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;

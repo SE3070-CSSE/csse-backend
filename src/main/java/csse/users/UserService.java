@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserDAO repository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserService(UserDAO repository, BCryptPasswordEncoder bCryptPasswordEncoder) {

@@ -25,7 +25,7 @@ import static csse.auth.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
