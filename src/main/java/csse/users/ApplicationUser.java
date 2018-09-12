@@ -4,31 +4,29 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
-import java.util.List;
-
 public class ApplicationUser {
 
     @Id
-    private String id;
+    private String _id;
 
     private String username;
     private String password;
-    private List<String> roles;
+    private String role;
 
     // @JsonCreator annotation was added because jackson would not detect the constructor automatically
     @JsonCreator
-    public ApplicationUser(@JsonProperty("id") String id,
+    public ApplicationUser(@JsonProperty("_id") String _id,
                            @JsonProperty("username") String username,
                            @JsonProperty("password") String password,
-                           @JsonProperty("roles") List<String> roles) {
-        this.id = id;
+                           @JsonProperty("role") String role) {
+        this._id = _id;
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
     public String getUsername() {

@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 public class Item {
 
     @Id
-    private String id;
+    private String _id;
     private String itemName;
     private String category;
     private Double price;
@@ -14,7 +14,7 @@ public class Item {
 
     public Item(String itemName, String category, Double price,
                 String deliveryInformation, boolean isRestricted) {
-
+        this._id = _id;
         this.itemName = itemName;
         this.category = category;
         this.price = price;
@@ -22,12 +22,12 @@ public class Item {
         this.isRestricted = isRestricted;
     }
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getItemName() {

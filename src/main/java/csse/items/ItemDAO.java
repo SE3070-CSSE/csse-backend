@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ItemDAO extends MongoRepository<Item, String> {
 
-    Item findByItemName(String itemName);
-    List<Item> findByCategory(String category);
+    public Item findByItemName(String itemName);
+    public List<Item> findByCategory(String category);
 
 }

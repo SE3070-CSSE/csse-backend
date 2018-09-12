@@ -18,8 +18,8 @@ import static csse.auth.SecurityConstants.SIGN_UP_URL;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsServiceImpl userService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserDetailsServiceImpl userService;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public WebSecurityConfig(UserDetailsServiceImpl userService, BCryptPasswordEncoder bCryptPasswordEncoder) {

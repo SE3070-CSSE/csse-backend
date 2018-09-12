@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import static csse.auth.SecurityConstants.*;
 
-class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
