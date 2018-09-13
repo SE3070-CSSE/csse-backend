@@ -12,5 +12,12 @@ env:
              XTouxr2E7syutiSH+Jaj73G4vQQUgHUIjF4tsgJ1EVf7lYPTb43bz8kPOo8+3KDtRKXYBWod4gBwOFhkk4vwJicmON5+0tftO8XS802EUY5rhFPLvWydeKhqV7jskPFoivpSg825TBTtyNXzDyHxcn5x67l+bfhE5mMoLiJ/zapoAkih5QPCAO+/8ydfr3+UbNU44VD0
              NhifemK8SbduyuzayojlZxG/+VBznOxQxzXZKJNv+ck2z5ftz0uCFq72+PrHUBAuKGrYW+dSDncXGWt9ohURKNaTaSFArc="
 
+addons:
+  sonarcloud:
+    organization: "se3070-csse"
+    token:
+      secure: $SONAR_TOKEN
+
 script:
 - ./mvnw clean install -B
+- ./mvnw clean package sonar:sonar
