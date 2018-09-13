@@ -1,0 +1,16 @@
+language: java
+sudo: true
+jdk: oraclejdk8
+
+before_install:
+  - chmod +x mvnw
+
+env:
+  global:
+  - secure: "XLEVAU0dTnI+JQQaI0Rds18TvxiPqr5O2D/b9ChIuliyqrHZ7tJOTEtp34B8Rs1Euj1axeXDkDqwieQd8U3gldqhPWwGu1D9R+YhahelLwEVqf+/0UvGTFuKklOlBxLwGK8g1jRoYljVQuRioilEw35qEPyqGX+zagLEjiUFO1y8W0pJ3icJi2gioicz1
+             2vQcHJ49Mj0Gds1TgWi4jyg8tMs5XFE1FLw+qfVmhk6LzqjtO7YLvhrc4D40vKOr3dxlURBAFsjirVTwqObq1KxhYqW7If0z2qObdiGImZO1LaBJmECpN1cPtdI1OYosYUME52EXBRZnt3HopV/JYCiuzL5B9i3CuNthA6+LoD4DnLSbnBppL48ZmkZtTANria6/JLyt
+             XTouxr2E7syutiSH+Jaj73G4vQQUgHUIjF4tsgJ1EVf7lYPTb43bz8kPOo8+3KDtRKXYBWod4gBwOFhkk4vwJicmON5+0tftO8XS802EUY5rhFPLvWydeKhqV7jskPFoivpSg825TBTtyNXzDyHxcn5x67l+bfhE5mMoLiJ/zapoAkih5QPCAO+/8ydfr3+UbNU44VD0
+             NhifemK8SbduyuzayojlZxG/+VBznOxQxzXZKJNv+ck2z5ftz0uCFq72+PrHUBAuKGrYW+dSDncXGWt9ohURKNaTaSFArc="
+
+script:
+- ./mvnw clean install -B
