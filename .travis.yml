@@ -32,10 +32,10 @@ jobs:
         api_key: $HEROKU_API_KEY
         app: csse-backend-development
         on:
-          branch: backup
+          branch: development
     - stage: deploy to production
       deploy:
         <<: *heroku
         app: csse-backend
         on:
-          branch: deploy
+          branch: production
