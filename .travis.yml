@@ -24,16 +24,14 @@ jobs:
       script:
       - ./mvnw clean install -B
       - ./mvnw clean package sonar:sonar
-    - stage: stage2
-      script: echo two
-    - stage: deploy to staging
+    - stage: conditional deployment to staging
       deploy: &heroku
         provider: heroku
         api_key: $HEROKU_API_KEY
         app: csse-backend-development
         on:
           branch: development
-    - stage: deploy to production
+    - stage: conditional deployment to production
       deploy:
         <<: *heroku
         app: csse-backend
