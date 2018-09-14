@@ -1,25 +1,26 @@
 package csse.items;
 
+import csse.suppliers.Supplier;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class Item {
 
     @Id
     private String _id;
     private String itemName;
+    @DBRef
+    private Supplier supplier;
     private String category;
     private Double price;
-    private String deliveryInformation;
-    private boolean isRestricted;
+    private String description;
 
-    public Item(String itemName, String category, Double price,
-                String deliveryInformation, boolean isRestricted) {
-        this._id = _id;
+    public Item(String itemName, Supplier supplier, String category, Double price, String description) {
         this.itemName = itemName;
+        this.supplier = supplier;
         this.category = category;
         this.price = price;
-        this.deliveryInformation = deliveryInformation;
-        this.isRestricted = isRestricted;
+        this.description = description;
     }
 
     public String get_id() {
@@ -38,6 +39,14 @@ public class Item {
         this.itemName = itemName;
     }
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -54,19 +63,11 @@ public class Item {
         this.price = price;
     }
 
-    public String getDeliveryInformation() {
-        return deliveryInformation;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDeliveryInformation(String deliveryInformation) {
-        this.deliveryInformation = deliveryInformation;
-    }
-
-    public boolean isRestricted() {
-        return isRestricted;
-    }
-
-    public void setRestricted(boolean restricted) {
-        isRestricted = restricted;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
