@@ -21,9 +21,9 @@ public class OrderService {
     }
 
     PurchaseOrder saveOrder(PurchaseOrder purchaseOrder) {
-        OrderStatus status = OrderStatus.PENDING;
-        purchaseOrder.setOrderStatus(status.name());
-        purchaseOrder.setOrderedOn(new Date());
+        OrderStatus status = OrderStatus.PENDING_DELIVERY;
+        purchaseOrder.setStatus(status.name());
+        purchaseOrder.setCreatedOn(new Date());
         return repository.save(purchaseOrder);
     }
 
