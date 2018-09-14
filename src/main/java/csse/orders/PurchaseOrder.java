@@ -3,6 +3,7 @@ package csse.orders;
 
 import csse.items.Item;
 import csse.requests.PurchaseRequest;
+import csse.suppliers.Supplier;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -16,16 +17,20 @@ public class PurchaseOrder {
     private String _id;
     @DBRef
     private PurchaseRequest purchaseRequest;
+    @DBRef
+    private Supplier supplier;
     private Date createdOn;
     private String status;
     private List<OrderLineItem> orderItems;
     private double totalPrice;
 
+
     public PurchaseOrder(
-            PurchaseRequest purchaseRequest, Date createdOn, String status,
-            List<OrderLineItem> orderItems, double totalPrice
+            PurchaseRequest purchaseRequest, Supplier supplier, Date createdOn,
+            String status, List<OrderLineItem> orderItems, double totalPrice
     ) {
         this.purchaseRequest = purchaseRequest;
+        this.supplier = supplier;
         this.createdOn = createdOn;
         this.status = status;
         this.orderItems = orderItems;
@@ -46,6 +51,14 @@ public class PurchaseOrder {
 
     public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
         this.purchaseRequest = purchaseRequest;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public Date getCreatedOn() {
