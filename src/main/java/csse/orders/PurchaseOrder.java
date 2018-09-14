@@ -2,6 +2,7 @@ package csse.orders;
 
 
 import csse.items.Item;
+import csse.requests.PurchaseRequest;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -14,22 +15,21 @@ public class PurchaseOrder {
     @Id
     private String _id;
     @DBRef
-    private List<Item> items;
-    private String supplierName;
-    private String orderStatus;
-    private Date orderedOn;
-    private boolean isDraftPurchaseOrder;
+    private PurchaseRequest purchaseRequest;
+    private Date createdOn;
+    private String status;
+    private List<OrderLineItem> orderItems;
+    private double totalPrice;
 
-    public PurchaseOrder(List<Item> items,
-                         String supplierName,
-                         String orderStatus,
-                         Date orderedOn,
-                         boolean isDraftPurchaseOrder) {
-        this.items = items;
-        this.supplierName = supplierName;
-        this.orderStatus = orderStatus;
-        this.orderedOn = orderedOn;
-        this.isDraftPurchaseOrder = isDraftPurchaseOrder;
+    public PurchaseOrder(
+            PurchaseRequest purchaseRequest, Date createdOn, String status,
+            List<OrderLineItem> orderItems, double totalPrice
+    ) {
+        this.purchaseRequest = purchaseRequest;
+        this.createdOn = createdOn;
+        this.status = status;
+        this.orderItems = orderItems;
+        this.totalPrice = totalPrice;
     }
 
     public String get_id() {
@@ -40,43 +40,43 @@ public class PurchaseOrder {
         this._id = _id;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public PurchaseRequest getPurchaseRequest() {
+        return purchaseRequest;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
+        this.purchaseRequest = purchaseRequest;
     }
 
-    public String getSupplierName() {
-        return supplierName;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public Date getOrderedOn() {
-        return orderedOn;
+    public List<OrderLineItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderedOn(Date orderedOn) {
-        this.orderedOn = orderedOn;
+    public void setOrderItems(List<OrderLineItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
-    public boolean isDraftPurchaseOrder() {
-        return isDraftPurchaseOrder;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setDraftPurchaseOrder(boolean draftPurchaseOrder) {
-        isDraftPurchaseOrder = draftPurchaseOrder;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
