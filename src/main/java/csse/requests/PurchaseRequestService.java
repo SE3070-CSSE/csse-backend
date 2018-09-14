@@ -23,7 +23,7 @@ public class PurchaseRequestService {
     PurchaseRequest createRequest(PurchaseRequest purchaseRequest) {
         RequestStatus status = RequestStatus.PENDING;
         purchaseRequest.setRequestStatus(status.name());
-        purchaseRequest.setRequestedOn(new Date());
+        purchaseRequest.setCreatedOn(new Date());
         return repository.save(purchaseRequest);
     }
 

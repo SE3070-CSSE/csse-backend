@@ -1,6 +1,6 @@
 package csse.requests;
 
-import csse.items.Item;
+import csse.orders.PurchaseOrder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -15,19 +15,27 @@ public class PurchaseRequest {
     @Id
     private String id;
     @DBRef
-    private List<Item> items;
+    private List<RequestItem> requestLineItems;
+    private List<PurchaseOrder> purchaseOrders;
     private String requestStatus;
-    private Date requestedOn;
-    private Date requiredOn;
+    private String requestedBy;
+    private String deliveryAddress;
+    private Date createdOn;
+    private Date neededOn;
     private boolean isDraftRequest;
 
-    public PurchaseRequest(List<Item> items,
-                         String requestStatus,
-                         Date requestedOn,
-                         boolean isDraftRequest) {
-        this.items = items;
+    public PurchaseRequest(
+            List<RequestItem> requestLineItems, List<PurchaseOrder> purchaseOrders,
+            String requestStatus, String requestedBy, String deliveryAddress,
+            Date createdOn, Date neededOn, boolean isDraftRequest
+    ) {
+        this.requestLineItems = requestLineItems;
+        this.purchaseOrders = purchaseOrders;
         this.requestStatus = requestStatus;
-        this.requestedOn = requestedOn;
+        this.requestedBy = requestedBy;
+        this.deliveryAddress = deliveryAddress;
+        this.createdOn = createdOn;
+        this.neededOn = neededOn;
         this.isDraftRequest = isDraftRequest;
     }
 
@@ -39,12 +47,20 @@ public class PurchaseRequest {
         this.id = id;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<RequestItem> getRequestLineItems() {
+        return requestLineItems;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setRequestLineItems(List<RequestItem> requestLineItems) {
+        this.requestLineItems = requestLineItems;
+    }
+
+    public List<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
+    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
     }
 
     public String getRequestStatus() {
@@ -55,20 +71,36 @@ public class PurchaseRequest {
         this.requestStatus = requestStatus;
     }
 
-    public Date getRequestedOn() {
-        return requestedOn;
+    public String getRequestedBy() {
+        return requestedBy;
     }
 
-    public void setRequestedOn(Date requestedOn) {
-        this.requestedOn = requestedOn;
+    public void setRequestedBy(String requestedBy) {
+        this.requestedBy = requestedBy;
     }
 
-    public Date getRequiredOn() {
-        return requiredOn;
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setRequiredOn(Date requiredOn) {
-        this.requiredOn = requiredOn;
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public Date getNeededOn() {
+        return neededOn;
+    }
+
+    public void setNeededOn(Date neededOn) {
+        this.neededOn = neededOn;
     }
 
     public boolean isDraftRequest() {
@@ -78,5 +110,4 @@ public class PurchaseRequest {
     public void setDraftRequest(boolean draftRequest) {
         isDraftRequest = draftRequest;
     }
-
 }
