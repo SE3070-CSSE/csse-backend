@@ -1,5 +1,5 @@
- 
-# Git Workflow
+# CSSE Backend [![Build Status](https://travis-ci.org/SE3070-CSSE/csse-backend.svg?branch=development)](https://travis-ci.org/SE3070-CSSE/csse-backend)
+## Git Workflow
 
 This document describes the workflow, conventions, and best practices to use with regard to Git.For those of you who are new to git, or want a refresher, the following links will help
 
@@ -7,13 +7,13 @@ This document describes the workflow, conventions, and best practices to use wit
 - [git - the simple quide](http://rogerdudler.github.io/git-guide/) - A more simplified guide
 
 
-## Branching
+### Branching
 
 Every new feature, bug-fix, spelling correction, or change should be developed on a separate branch.
 
 `master` is the branch that gets deployed to production, so it should always be in a production-ready state (i.e. all tests should pass). 
 
-#### Branch naming
+##### Branch naming
 
 Branch names should be in **kebab-case** (use hyphens to separate words, all simple). Use descriptive branch names.
 
@@ -31,7 +31,7 @@ Examples:
         errors (not descriptive)
         fix-bug (not descriptive)
 
-## Committing
+### Committing
 
 A commit should contain one **self-contained**, **reversible**, readable change to your code. This has numerous benefits:
 
@@ -44,7 +44,7 @@ When committing, it's a good idea to review every line of code that you commit. 
 When writing commit messages, the first line should be a short description of the change. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the issue ID followed by a colon (e.g. `1128: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.
 
 
-### Whitespace changes and prettyfying
+#### Whitespace changes and prettyfying
 Whitespace changes and renaming/moving files are special cases and should be treated differently. In particlar, it can be diffiult to review code where there are large diffs that move chunks of code around.
  - git (and github) sometimes has trouble displaying changes when a file is both renamed and edited. Instead, make one commit for renaming/moving the files, and a second for the code changes.
  - When making signifiant whitespace changes/reflowing code, it's best to make one commit containing only whitespace changes (pro tip: pulls/<#>/files?w=1), and a second one containing the code changes.
@@ -53,7 +53,7 @@ By splitting the changes into commits that clearly change specific things (and m
 Good: TODO
 Bad: TODO
 
-## Pull Requests
+### Pull Requests
 
 We use the [shared repository model](https://help.github.com/articles/about-collaborative-development-models/) where collaborators are granted push access to a single shared repository and topic branches are created when changes need to be made. Pull requests are useful in this model as they initiate code review and general discussion about a set of changes before the changes are merged into the main development branch
 
@@ -72,7 +72,7 @@ to the same parts of the codebase.
 
 For more good advice on how to write and review a PR, see [Github's guidelines](https://github.com/blog/1943-how-to-write-the-perfect-pull-request).
 
-## Workflow
+### Workflow
 
 Here is the simplest development workflow you should use:
 
