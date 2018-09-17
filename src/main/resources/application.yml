@@ -1,3 +1,9 @@
-itempolicies:
-    - base-name-check
-    - base-supplier-check
+csse:
+  filterprefix: cssePolicy
+
+  excludedfilters: >
+    springSecurityFilterChain,
+    characterEncodingFilter,
+
+  activeFilters: >
+    cssePolicyPreApprovedSuppliers,
