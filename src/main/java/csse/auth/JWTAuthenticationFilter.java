@@ -58,7 +58,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult) throws IOException, ServletException {
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + generateJWTToken(authResult));
         response.addHeader("Content-Type", "application/json");
-        response.getWriter().write("{\"" + HEADER_STRING + "\":\""  + generateJWTToken(authResult)+"\"}");
+        response.getWriter().write("{\"" + HEADER_STRING + "\":\"Bearer "  + generateJWTToken(authResult)+"\"}");
     }
 
     /**
