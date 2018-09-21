@@ -1,5 +1,7 @@
 package csse.requests;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.orders.PurchaseOrder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -24,10 +26,16 @@ public class PurchaseRequest {
     private Date neededOn;
     private boolean isDraftRequest;
 
+    @JsonCreator
     public PurchaseRequest(
-            List<RequestItem> requestLineItems, List<PurchaseOrder> purchaseOrders,
-            String requestStatus, String requestedBy, String deliveryAddress,
-            Date createdOn, Date neededOn, boolean isDraftRequest
+            @JsonProperty("requestLineItems") List<RequestItem> requestLineItems,
+            @JsonProperty("purchaseOrders") List<PurchaseOrder> purchaseOrders,
+            @JsonProperty("requestStatus") String requestStatus,
+            @JsonProperty("requestedBy") String requestedBy,
+            @JsonProperty("deliveryAddress") String deliveryAddress,
+            @JsonProperty("createdOn") Date createdOn,
+            @JsonProperty("neededOn") Date neededOn,
+            @JsonProperty("isDraftRequest") boolean isDraftRequest
     ) {
         this.requestLineItems = requestLineItems;
         this.purchaseOrders = purchaseOrders;

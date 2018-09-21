@@ -1,5 +1,7 @@
 package csse.orders;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.items.Item;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -14,7 +16,12 @@ public class OrderLineItem {
     private double orderLinePrice;
     private boolean received;
 
-    public OrderLineItem(Item item, int quantity, double orderLinePrice, boolean received) {
+    @JsonCreator
+    public OrderLineItem(
+            @JsonProperty("item") Item item,
+            @JsonProperty("quantity") int quantity,
+            @JsonProperty("orderLinePrice") double orderLinePrice,
+            @JsonProperty("received") boolean received) {
         this.item = item;
         this.quantity = quantity;
         this.orderLinePrice = orderLinePrice;

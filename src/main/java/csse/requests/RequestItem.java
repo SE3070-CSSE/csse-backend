@@ -1,5 +1,8 @@
 package csse.requests;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Damma on 14-Sep-18.
  */
@@ -9,7 +12,11 @@ public class RequestItem {
     private int quantity;
     private boolean POCreated;
 
-    public RequestItem(String itemName, int quantity, boolean POCreated) {
+    @JsonCreator
+    public RequestItem(
+            @JsonProperty("itemName") String itemName,
+            @JsonProperty("quantity") int quantity,
+            @JsonProperty("POCreated") boolean POCreated) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.POCreated = POCreated;
