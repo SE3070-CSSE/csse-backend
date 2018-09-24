@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.suppliers.Supplier;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class Item {
 
     @Id
     private String _id;
+    @Indexed(unique = true)
     private String itemName;
     @DBRef
     private Supplier supplier;
