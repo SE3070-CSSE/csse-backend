@@ -19,6 +19,10 @@ public class ItemService {
         repository.deleteAll();
     }
 
+    void deleteItems(List<Item> items) {
+        this.repository.deleteAll(items);
+    }
+
     Item saveItem(Item i) {
         return repository.save(i);
     }
