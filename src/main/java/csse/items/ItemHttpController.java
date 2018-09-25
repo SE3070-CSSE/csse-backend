@@ -40,4 +40,9 @@ public class ItemHttpController {
         return ResponseEntity.status(HttpStatus.CREATED).body(itemService.saveItem(item));
     }
 
+    @PutMapping("/items")
+    public ResponseEntity<Object> updateItemEndpoint(@RequestBody Item item) {
+        return ResponseEntity.status(HttpStatus.OK).body(itemService.updateItem(item));
+    }
+
 }

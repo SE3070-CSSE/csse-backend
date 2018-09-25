@@ -38,4 +38,8 @@ public class ItemService {
     public List<Item> fetchByCategory(String category) {
         return repository.findByCategory(category);
     }
+
+    Item updateItem(Item item) {
+        return repository.save(item);
+    }
 }
