@@ -1,5 +1,6 @@
 package csse.orders;
 
-public class OrderStatus {
-
+public enum OrderStatus {
+	PENDING,
+    DELIVERED
 }
