@@ -18,6 +18,7 @@ public class UserService {
 
     void register(ApplicationUser applicationUser) {
         applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
+        applicationUser.getRoles().add("USER");
         repository.save(applicationUser);
     }
 
