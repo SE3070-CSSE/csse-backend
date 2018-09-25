@@ -1,6 +1,8 @@
 package csse.orders;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.items.Item;
 import csse.requests.PurchaseRequest;
 import csse.suppliers.Supplier;
@@ -24,10 +26,14 @@ public class PurchaseOrder {
     private List<OrderLineItem> orderItems;
     private double totalPrice;
 
-
+    @JsonCreator
     public PurchaseOrder(
-            PurchaseRequest purchaseRequest, Supplier supplier, Date createdOn,
-            String status, List<OrderLineItem> orderItems, double totalPrice
+            @JsonProperty("purchaseRequest") PurchaseRequest purchaseRequest,
+            @JsonProperty("supplier") Supplier supplier,
+            @JsonProperty("createdOn") Date createdOn,
+            @JsonProperty("status") String status,
+            @JsonProperty("orderItems") List<OrderLineItem> orderItems,
+            @JsonProperty("totalPrice") double totalPrice
     ) {
         this.purchaseRequest = purchaseRequest;
         this.supplier = supplier;

@@ -1,13 +1,19 @@
 package csse.items;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.suppliers.Supplier;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Item {
 
     @Id
     private String _id;
+    @Indexed(unique = true)
     private String itemName;
     @DBRef
     private Supplier supplier;
@@ -15,7 +21,14 @@ public class Item {
     private Double price;
     private String description;
 
-    public Item(String itemName, Supplier supplier, String category, Double price, String description) {
+    @JsonCreator
+    public Item(
+            @JsonProperty("itemName") String itemName,
+            @JsonProperty("supplier") Supplier supplier,
+            @JsonProperty("category") String category,
+            @JsonProperty("price") Double price,
+            @JsonProperty("description") String description
+    ) {
         this.itemName = itemName;
         this.supplier = supplier;
         this.category = category;

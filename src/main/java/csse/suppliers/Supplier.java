@@ -1,5 +1,7 @@
 package csse.suppliers;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.items.Item;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -20,7 +22,13 @@ public class Supplier {
     @DBRef
     private List<Item> items;
 
-    public Supplier(String supplierName, String email, String address, String contactNumber, List<Item> items) {
+    @JsonCreator
+    public Supplier(
+            @JsonProperty("supplierName") String supplierName,
+            @JsonProperty("email") String email,
+            @JsonProperty("address") String address,
+            @JsonProperty("contactNumber") String contactNumber,
+            @JsonProperty("items") List<Item> items) {
         this.supplierName = supplierName;
         this.email = email;
         this.address = address;

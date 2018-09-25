@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -30,8 +31,8 @@ public class ItemHttpController {
     }
 
     @DeleteMapping("/items")
-    public void dropTableEndpoint() {
-        itemService.cleanDatabase();
+    public void deleteItemsEndpoint(@RequestBody List<Item> items) {
+        itemService.deleteItems(items);
     }
 
     @PostMapping("/items")
