@@ -15,8 +15,7 @@ import java.util.List;
 public class PurchaseRequest {
 
     @Id
-    private String id;
-    @DBRef
+    private String _id;
     private List<RequestItem> requestLineItems;
     private List<PurchaseOrder> purchaseOrders;
     private String requestStatus;
@@ -48,11 +47,11 @@ public class PurchaseRequest {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public List<RequestItem> getRequestLineItems() {

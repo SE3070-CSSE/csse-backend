@@ -2,12 +2,15 @@ package csse.requests;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 
 /**
  * Created by Damma on 14-Sep-18.
  */
 public class RequestItem {
 
+//    @Id
+//    private String _id;
     private String itemName;
     private int quantity;
     private boolean POCreated;
@@ -21,6 +24,10 @@ public class RequestItem {
         this.quantity = quantity;
         this.POCreated = POCreated;
     }
+
+//    public String get_id() { return _id; }
+//
+//    public void set_id(String _id) { this._id = _id; }
 
     public String getItemName() {
         return itemName;
