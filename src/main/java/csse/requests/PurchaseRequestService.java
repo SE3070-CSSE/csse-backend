@@ -20,10 +20,14 @@ public class PurchaseRequestService {
         repository.deleteAll();
     }
 
-    PurchaseRequest createRequest(PurchaseRequest purchaseRequest) {
+    public PurchaseRequest createRequest(PurchaseRequest purchaseRequest) {
         RequestStatus status = RequestStatus.PENDING;
         purchaseRequest.setRequestStatus(status.name());
         purchaseRequest.setCreatedOn(new Date());
+        return repository.save(purchaseRequest);
+    }
+
+    public PurchaseRequest updateRequest(PurchaseRequest purchaseRequest) {
         return repository.save(purchaseRequest);
     }
 
