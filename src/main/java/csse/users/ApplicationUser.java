@@ -24,7 +24,7 @@ public class ApplicationUser {
 	private List<String> roles;
 	
 	private String createdDate;
-	private String LastLogin;
+	private String lastLogin;
 	private String modifiedDate;
 	
 	public ApplicationUser(String emp_ID, String emp_type, String firstname, String lastname, String address, String email,
@@ -41,7 +41,7 @@ public class ApplicationUser {
 		this.password = password;
 		this.roles = roles;
 		this.createdDate = createdDate;
-		this.LastLogin = lastLogin;
+		this.lastLogin = lastLogin;
 		this.modifiedDate = modifiedDate;
 	}
 
@@ -137,12 +137,12 @@ public class ApplicationUser {
 		this.createdDate = createdDate;
 	}
 
-	public String getLastLogin() {
-		return LastLogin;
+	public String getlastLogin() {
+		return lastLogin;
 	}
 
-	public void setLastLogin(String lastLogin) {
-		LastLogin = lastLogin;
+	public void setlastLogin(String lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
 	public String getModifiedDate() {
@@ -158,7 +158,7 @@ public class ApplicationUser {
 		return "User [_id=" + _id + ", emp_ID=" + emp_ID + ", emp_type=" + emp_type + ", firstname=" + firstname
 				+ ", lastname=" + lastname + ", address=" + address + ", email=" + email + ", phone=" + phone
 				+ ", username=" + username + ", password=" + password + ", roles=" + roles + ", createdDate="
-				+ createdDate + ", LastLogin=" + LastLogin + ", modifiedDate=" + modifiedDate + "]";
+				+ createdDate + ", LastLogin=" + lastLogin + ", modifiedDate=" + modifiedDate + "]";
 	}
 	
 }
