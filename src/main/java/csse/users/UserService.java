@@ -6,22 +6,26 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 	
 	private final UserDAO repo;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
-	public UserService(UserDAO repo) {
+	public UserService(UserDAO repo, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.repo = repo;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}	
 	
 	private List<ApplicationUser> users;
 	
 	//register
 	String register(ApplicationUser user) {
+		
 		users=repo.findAll();
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -42,7 +46,8 @@ public class UserService {
 				if(!(users.toString().matches("\\[.*\\b" + usemail + "\\b.*]"))) {
 					
 					if(!(users.toString().matches("\\[.*\\b" + ususn + "\\b.*]"))) {
-							
+						
+						user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 						user.setCreatedDate(d);
 						user.setlastLogin("00/00/0000 00:00:00");
 						user.setModifiedDate(d);
@@ -65,7 +70,7 @@ public class UserService {
 	}
 	
 	//get user by username
-	ApplicationUser findByUsername(String username) {
+	public ApplicationUser findByUsername(String username) {
 		return repo.findByUsername(username);
 	}
 	
@@ -90,7 +95,8 @@ public class UserService {
         
         if(u.getPassword().equals(cpwd)) {
         	if(npwd.equals(confirm)) {
-                u.setPassword(npwd);
+        		u.setPassword(bCryptPasswordEncoder.encode(npwd));
+                //u.setPassword(npwd);
 				u.setModifiedDate(d);
 				
                 repo.save(u);
@@ -110,7 +116,10 @@ public class UserService {
 		
 		ApplicationUser u= repo.findByUsername(username);
         if(np.equals(confirm)) {
-            u.setPassword(np);
+        	
+        	u.setPassword(bCryptPasswordEncoder.encode(np));
+            
+            //u.setPassword(np);
 			u.setModifiedDate(d);
 			
             repo.save(u);

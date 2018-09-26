@@ -2,25 +2,49 @@ package csse.users;
 
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 
 public class ApplicationUser {
 	
 	@Id
 	private String _id;
 	
+	@NotNull
+	@Size(min=5, max=5)
 	private String emp_ID;
+	
+	@NotNull
 	private String emp_type;
+	
+	@NotNull
 	private String firstname;
+	
+	@NotNull
 	private String lastname;
+	
+	@NotNull
 	private String address;
+	
+	@NotNull
+	@Email
 	private String email;
+	
+	@NotNull
+	@Size(min=10, max=10)
 	private String phone;
 	
+	
+	@NotNull
 	private String username;
+	
+	@NotNull
 	private String password;
+	
+	@NotNull
 	private List<String> roles;
 	
 	private String createdDate;
@@ -43,6 +67,10 @@ public class ApplicationUser {
 		this.createdDate = createdDate;
 		this.lastLogin = lastLogin;
 		this.modifiedDate = modifiedDate;
+	}
+
+	public ApplicationUser() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String get_id() {
