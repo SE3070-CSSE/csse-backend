@@ -3,6 +3,7 @@ package csse.requests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +33,10 @@ public class PurchaseRequestService {
     }
 
     List<PurchaseRequest> getApprovedRequests() {
-        return repository.getAllByRequestStatusEquals(RequestStatus.APPROVED.name());
+        List<String> statusList = new ArrayList<>();
+        statusList.add(RequestStatus.APPROVED.name());
+        statusList.add(RequestStatus.PROCESSING.name());
+        return repository.getAllByRequestStatusIn(statusList);
     }
 
     List<PurchaseRequest> fetchAll() {
