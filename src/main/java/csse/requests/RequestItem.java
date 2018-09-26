@@ -2,39 +2,37 @@ package csse.requests;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import csse.items.Item;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
  * Created by Damma on 14-Sep-18.
  */
 public class RequestItem {
 
-//    @Id
-//    private String _id;
-    private String itemName;
+    @DBRef
+    private Item item;
     private int quantity;
     private boolean POCreated;
 
     @JsonCreator
     public RequestItem(
-            @JsonProperty("itemName") String itemName,
+            @JsonProperty("item") Item item,
             @JsonProperty("quantity") int quantity,
             @JsonProperty("POCreated") boolean POCreated) {
-        this.itemName = itemName;
+        this.item = item;
         this.quantity = quantity;
         this.POCreated = POCreated;
     }
 
-//    public String get_id() { return _id; }
-//
-//    public void set_id(String _id) { this._id = _id; }
 
-    public String getItemName() {
-        return itemName;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public int getQuantity() {
