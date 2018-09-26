@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @author Damsith Karunaratna(dammakaru@gmail.com)
+ * @author Udana Rathnayaka
  */
 @RestController
 public class ItemHttpController {

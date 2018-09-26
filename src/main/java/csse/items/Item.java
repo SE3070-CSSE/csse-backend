@@ -1,7 +1,7 @@
 package csse.items;
 
 /**
- * @author Damsith Karunaratna(dammakaru@gmail.com) on 9/17/2018.
+ * @author Udana Rathnayaka on 9/17/2018.
  */
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
