@@ -1,7 +1,9 @@
 package csse.orders;
 
+import csse.requests.PurchaseRequest;
 import csse.requests.PurchaseRequestService;
-import csse.requests.RequestDAO;
+import csse.requests.RequestItem;
+import csse.requests.RequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,15 +28,24 @@ public class OrderService {
 
     PurchaseOrder createPurchaseOrder(PurchaseOrder purchaseOrder) {
 
-        OrderStatus status = OrderStatus.PENDING_DELIVERY;
-        purchaseOrder.setStatus(status.name());
+        purchaseOrder.setStatus(OrderStatus.PENDING_DELIVERY.name());
         purchaseOrder.setCreatedOn(new Date());
+        if (ordersCreatedForAllRequestItems(purchaseOrder.getPurchaseRequest())) {
+            purchaseOrder.getPurchaseRequest().setRequestStatus(RequestStatus.ORDERED.name());
+        }
         this.requestService.updateRequest(purchaseOrder.getPurchaseRequest());
         return repository.save(purchaseOrder);
     }
 
+    private boolean ordersCreatedForAllRequestItems(PurchaseRequest request) {
+        for (RequestItem item : request.getRequestLineItems()) {
+            if (!item.isPOCreated()) return false;
+        }
+        return true;
+    }
+
     List<PurchaseOrder> fetchAll() {
-        return  repository.findAll();
+        return repository.findAll();
     }
 
 }
