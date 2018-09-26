@@ -1,9 +1,6 @@
 package csse.suppliers;
 
+public interface SupplierDAO {
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-public interface SupplierDAO  extends MongoRepository<Supplier, String> {
-
-
+    Supplier findBySupplierName (String supplierName);
 }
