@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author Damsith Karunaratna(dammakaru@gmail.com)
+ * @author Udana Rathnayaka
  */
 @Service
 public class ItemService {

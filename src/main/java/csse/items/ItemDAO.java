@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 /**
- * @author Damsith Karunaratna(dammakaru@gmail.com) on 9/17/2018.
+ * @author Udana Rathnayaka on 9/17/2018.
  */
 public interface ItemDAO extends MongoRepository<Item, String> {
 
