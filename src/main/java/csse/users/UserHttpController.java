@@ -25,8 +25,8 @@ public class UserHttpController {
 	}
 	
 	@PostMapping("/signup")
-    public void signUp(@RequestBody ApplicationUser user) {
-        service.register(user);
+    public String signUp(@RequestBody ApplicationUser user) {
+        return service.register(user);
     }
 
     @GetMapping("/list")
@@ -39,14 +39,14 @@ public class UserHttpController {
         return service.findByUsername(username);
     }
     
-    /*
-    @GetMapping("/{EID}")
-    ApplicationUser detailsEID(@PathVariable(value="EID")String eid) {
-       return service.findByiID(eid);
-    }
-    */
     
-    @PatchMapping("/upate/{username}")
+    @GetMapping("/search/{EID}")
+    ApplicationUser EID(@PathVariable(value="EID")String eid) {
+       return service.findByemp(eid);
+    }    
+    
+    
+    @PatchMapping("/update/{username}")
     ApplicationUser update(@PathVariable(value="username")String u, @RequestBody Map<String, String> body) {
     	String username = u;
     	
@@ -58,14 +58,14 @@ public class UserHttpController {
     	
     	return service.editProfile(username, fn, ln, ad, con, email);
     }
-    /*
+    
     @DeleteMapping("/deactivate")
     public String deactivate(@RequestBody Map<String, String> body) {
     	String ID=body.get("Emp_ID");
     	
     	return service.deactivate(ID);
     }
-    */
+    
     
     @PatchMapping("/resetpassword/{username}")
     public String resetPassword(@PathVariable(value="username") String username, @RequestBody Map<String, String> body) {
@@ -74,6 +74,7 @@ public class UserHttpController {
     	String confirmp=body.get("confirm");
     	return service.resetPassword(username, currentp, newp, confirmp);
     }
+    
     
     @PatchMapping("/forgotpassword/{username}")
     public String forgotPassword(@PathVariable(value="username") String username, @RequestBody Map<String, String> body) {
