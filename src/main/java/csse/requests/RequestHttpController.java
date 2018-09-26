@@ -22,6 +22,11 @@ public class RequestHttpController {
         return purchaseRequestService.fetchAll();
     }
 
+    @GetMapping("/requests/approved")
+    public List<PurchaseRequest> getApprovedRequests() {
+        return purchaseRequestService.getApprovedRequests();
+    }
+
     @DeleteMapping("/requests")
     public void dropTableEndpoint() {
         purchaseRequestService.cleanDatabase();

@@ -27,6 +27,10 @@ public class PurchaseRequestService {
         return repository.save(purchaseRequest);
     }
 
+    List<PurchaseRequest> getApprovedRequests() {
+        return repository.getAllByRequestStatusEquals(RequestStatus.APPROVED.name());
+    }
+
     List<PurchaseRequest> fetchAll() {
         return  repository.findAll();
     }
