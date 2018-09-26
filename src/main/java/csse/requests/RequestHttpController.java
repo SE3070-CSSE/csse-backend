@@ -37,4 +37,8 @@ public class RequestHttpController {
         return ResponseEntity.status(HttpStatus.CREATED).body(purchaseRequestService.createRequest(request));
     }
 
+    @PutMapping("/requests/approve")
+    public ResponseEntity<Object> approveItemEndpoint(@RequestBody List<PurchaseRequest> purchaseRequests) {
+        return ResponseEntity.status(HttpStatus.OK).body(purchaseRequestService.approveRequests(purchaseRequests));
+    }
 }

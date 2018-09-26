@@ -35,4 +35,8 @@ public class PurchaseRequestService {
         return  repository.findAll();
     }
 
+    List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests) {
+        return repository.saveAll(purchaseRequests);
+    }
+
 }
