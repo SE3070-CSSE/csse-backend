@@ -32,6 +32,8 @@ public class OrderService {
         purchaseOrder.setCreatedOn(new Date());
         if (ordersCreatedForAllRequestItems(purchaseOrder.getPurchaseRequest())) {
             purchaseOrder.getPurchaseRequest().setRequestStatus(RequestStatus.ORDERED.name());
+        } else {
+            purchaseOrder.getPurchaseRequest().setRequestStatus(RequestStatus.PROCESSING.name());
         }
         this.requestService.updateRequest(purchaseOrder.getPurchaseRequest());
         return repository.save(purchaseOrder);
