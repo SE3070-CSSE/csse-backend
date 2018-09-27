@@ -3,6 +3,7 @@ package csse.requests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class PurchaseRequestService {
     private final RequestDAO repository;
 
     @Autowired
-    public PurchaseRequestService(RequestDAO  repository) {
+    public PurchaseRequestService(RequestDAO repository) {
         this.repository = repository;
     }
 
@@ -20,15 +21,30 @@ public class PurchaseRequestService {
         repository.deleteAll();
     }
 
-    PurchaseRequest createRequest(PurchaseRequest purchaseRequest) {
+    public PurchaseRequest createRequest(PurchaseRequest purchaseRequest) {
         RequestStatus status = RequestStatus.PENDING;
         purchaseRequest.setRequestStatus(status.name());
         purchaseRequest.setCreatedOn(new Date());
         return repository.save(purchaseRequest);
     }
 
+    public PurchaseRequest updateRequest(PurchaseRequest purchaseRequest) {
+        return repository.save(purchaseRequest);
+    }
+
+    List<PurchaseRequest> getApprovedRequests() {
+        List<String> statusList = new ArrayList<>();
+        statusList.add(RequestStatus.APPROVED.name());
+        statusList.add(RequestStatus.PROCESSING.name());
+        return repository.getAllByRequestStatusIn(statusList);
+    }
+
     List<PurchaseRequest> fetchAll() {
-        return repository.findAll();
+        return  repository.findAll();
+    }
+
+    List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests) {
+        return repository.saveAll(purchaseRequests);
     }
 
 }

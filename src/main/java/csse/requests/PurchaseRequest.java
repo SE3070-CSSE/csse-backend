@@ -1,7 +1,8 @@
 package csse.requests;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.orders.PurchaseOrder;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -11,8 +12,7 @@ import java.util.List;
 public class PurchaseRequest {
 
     @Id
-    private String id;
-    @DBRef
+    private String _id;
     private List<RequestItem> requestLineItems;
     private List<PurchaseOrder> purchaseOrders;
     private String requestStatus;
@@ -22,10 +22,16 @@ public class PurchaseRequest {
     private Date neededOn;
     private boolean isDraftRequest;
 
+    @JsonCreator
     public PurchaseRequest(
-            List<RequestItem> requestLineItems, List<PurchaseOrder> purchaseOrders,
-            String requestStatus, String requestedBy, String deliveryAddress,
-            Date createdOn, Date neededOn, boolean isDraftRequest
+            @JsonProperty("requestLineItems") List<RequestItem> requestLineItems,
+            @JsonProperty("purchaseOrders") List<PurchaseOrder> purchaseOrders,
+            @JsonProperty("requestStatus") String requestStatus,
+            @JsonProperty("requestedBy") String requestedBy,
+            @JsonProperty("deliveryAddress") String deliveryAddress,
+            @JsonProperty("createdOn") Date createdOn,
+            @JsonProperty("neededOn") Date neededOn,
+            @JsonProperty("isDraftRequest") boolean isDraftRequest
     ) {
         this.requestLineItems = requestLineItems;
         this.purchaseOrders = purchaseOrders;
@@ -38,11 +44,11 @@ public class PurchaseRequest {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public List<RequestItem> getRequestLineItems() {
@@ -108,5 +114,4 @@ public class PurchaseRequest {
     public void setDraftRequest(boolean draftRequest) {
         isDraftRequest = draftRequest;
     }
-
 }
