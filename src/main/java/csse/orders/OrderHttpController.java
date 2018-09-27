@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class OrderHttpController {
 
-    private final OrderServiceFacadeImpl orderServiceFacade;
+    private final OrderServiceFacade orderServiceFacade;
 
     @Autowired
     public OrderHttpController(OrderServiceFacadeImpl orderServiceFacade) {
