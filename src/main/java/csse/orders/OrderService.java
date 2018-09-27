@@ -14,12 +14,10 @@ import java.util.List;
 public class OrderService {
 
     private final OrderDAO repository;
-    private PurchaseRequestService requestService;
 
     @Autowired
-    public OrderService(OrderDAO repository, PurchaseRequestService requestService) {
+    public OrderService(OrderDAO repository) {
         this.repository = repository;
-        this.requestService = requestService;
     }
 
     void cleanDatabase() {
