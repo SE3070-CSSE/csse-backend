@@ -7,9 +7,6 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-/**
- * Created by Damma on 14-Sep-18.
- */
 public class RequestItem {
 
     @DBRef

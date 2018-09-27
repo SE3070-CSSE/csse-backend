@@ -9,9 +9,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by DAMMA on 9/12/2018.
- */
 public class PurchaseRequest {
 
     @Id
