@@ -1,8 +1,10 @@
 package csse.auth;
 
+import static csse.auth.SecurityConstants.SIGN_UP_URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,25 +15,36 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
-import static csse.auth.SecurityConstants.SIGN_UP_URL;
-
-@EnableWebSecurity
+@Configuration
+@EnableWebSecurity	// Enable security config. This annotation denotes config for spring security.
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private UserDetailsServiceImpl userService;
+	
+    private UserDetailsServiceImpl UsersService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+//    @Bean
+//   	public PasswordEncoder passwordEncoder(){
+//   		PasswordEncoder encoder = new BCryptPasswordEncoder();
+//   		return encoder;
+//   	}
+    
     @Autowired
-    public WebSecurityConfig(UserDetailsServiceImpl userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userService = userService;
+    public WebSecurityConfig(UserDetailsServiceImpl UsersService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.UsersService = UsersService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+	
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.cors().and().csrf().disable().authorizeRequests()
+        http
+        .cors()
+        .and()
+        .csrf().disable()
+        .authorizeRequests() // authorization requests config
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
@@ -41,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/configuration/security",
                         "/swagger-ui.html",
                         "/webjars/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().authenticated()	// Any other request must be authenticated
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
@@ -49,23 +62,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
+    // Spring has UserDetailsService interface, which can be overriden to provide our implementation for fetching user from database (or any other source).
+ 	// The UserDetailsService object is used by the auth manager to load the user from database.
+ 	// In addition, we need to define the password encoder also. So, auth manager can compare and verify passwords.
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(UsersService).passwordEncoder(bCryptPasswordEncoder);
     }
 
-//    @Bean
-//    public FilterRegistrationBean csseCorsFilter() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.addAllowedOrigin("*");
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("*");
-//        source.registerCorsConfiguration("/**", config);
-//        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-//        bean.setOrder(0);
-//        return bean;
-//    }
-
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;
+    }
 }

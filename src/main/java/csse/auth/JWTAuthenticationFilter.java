@@ -3,6 +3,7 @@ package csse.auth;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import csse.users.ApplicationUser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,13 +39,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
 
-            ApplicationUser applicationUser = new ObjectMapper()
+            ApplicationUser user = new ObjectMapper()
                     .readValue(request.getInputStream(), ApplicationUser.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            applicationUser.getUsername(),
-                            applicationUser.getPassword(),
+                            user.getUsername(),
+                            user.getPassword(),
                             new ArrayList<>())
             );
 
@@ -56,9 +59,18 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
+    	
+    	// Add token to header
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + generateJWTToken(authResult));
-        response.addHeader("Content-Type", "application/json");
-        response.getWriter().write("{\"" + HEADER_STRING + "\":\"Bearer "  + generateJWTToken(authResult)+"\"}");
+        
+//        ApplicationUser u = new ApplicationUser();
+//        
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//		Date date = new Date();
+//		String d=dateFormat.format(date);
+//        
+//        u.setlastLogin(d);
+        
     }
 
     /**
@@ -72,6 +84,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * @param authentication the spring framework's Authentication object which holds information about the user
      * @return JWT token
      */
+	
     private String generateJWTToken(Authentication authentication){
 
         ArrayList<String> arr =  new ArrayList<>();
