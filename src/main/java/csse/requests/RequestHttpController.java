@@ -22,13 +22,23 @@ public class RequestHttpController {
         return purchaseRequestService.fetchAll();
     }
 
+    @GetMapping("/requests/approved")
+    public List<PurchaseRequest> getApprovedRequests() {
+        return purchaseRequestService.getApprovedRequests();
+    }
+
     @DeleteMapping("/requests")
     public void dropTableEndpoint() {
         purchaseRequestService.cleanDatabase();
     }
 
     @PostMapping("/requests")
-    public ResponseEntity createRequestEndpoint (@RequestBody PurchaseRequest request) {
+    public ResponseEntity createRequestEndpoint(@RequestBody PurchaseRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(purchaseRequestService.createRequest(request));
+    }
+
+    @PutMapping("/requests/approve")
+    public ResponseEntity<Object> approveItemEndpoint(@RequestBody List<PurchaseRequest> purchaseRequests) {
+        return ResponseEntity.status(HttpStatus.OK).body(purchaseRequestService.approveRequests(purchaseRequests));
     }
 }
