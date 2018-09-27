@@ -26,24 +26,9 @@ public class OrderService {
         repository.deleteAll();
     }
 
-    PurchaseOrder createPurchaseOrder(PurchaseOrder purchaseOrder) {
 
-        purchaseOrder.setStatus(OrderStatus.PENDING_DELIVERY.name());
-        purchaseOrder.setCreatedOn(new Date());
-        if (ordersCreatedForAllRequestItems(purchaseOrder.getPurchaseRequest())) {
-            purchaseOrder.getPurchaseRequest().setRequestStatus(RequestStatus.ORDERED.name());
-        } else {
-            purchaseOrder.getPurchaseRequest().setRequestStatus(RequestStatus.PROCESSING.name());
-        }
-        this.requestService.updateRequest(purchaseOrder.getPurchaseRequest());
+    PurchaseOrder saveOrder(PurchaseOrder purchaseOrder) {
         return repository.save(purchaseOrder);
-    }
-
-    private boolean ordersCreatedForAllRequestItems(PurchaseRequest request) {
-        for (RequestItem item : request.getRequestLineItems()) {
-            if (!item.isPOCreated()) return false;
-        }
-        return true;
     }
 
     List<PurchaseOrder> fetchAll() {

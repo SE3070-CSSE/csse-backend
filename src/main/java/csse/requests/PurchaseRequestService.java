@@ -47,4 +47,11 @@ public class PurchaseRequestService {
         return repository.saveAll(purchaseRequests);
     }
 
+    public boolean ordersCreatedForAllRequestItems(PurchaseRequest request) {
+        for (RequestItem item : request.getRequestLineItems()) {
+            if (!item.isPOCreated()) return false;
+        }
+        return true;
+    }
+
 }

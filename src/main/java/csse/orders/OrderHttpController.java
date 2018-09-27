@@ -10,26 +10,26 @@ import java.util.List;
 @RestController
 public class OrderHttpController {
 
-    private final OrderService orderService;
+    private final OrderServiceFacadeImpl orderServiceFacade;
 
     @Autowired
-    public OrderHttpController(OrderService orderService) {
-        this.orderService = orderService;
+    public OrderHttpController(OrderServiceFacadeImpl orderServiceFacade) {
+        this.orderServiceFacade = orderServiceFacade;
     }
 
     @GetMapping("/orders")
     public List<PurchaseOrder> getAllOrdersEndpoint() {
-        return orderService.fetchAll();
+        return orderServiceFacade.getAllOrders();
     }
 
     @DeleteMapping("/orders")
     public void dropTableEndpoint() {
-        orderService.cleanDatabase();
+        orderServiceFacade.dropTable();
     }
 
     @PostMapping("/orders")
     public ResponseEntity createOrderEndpoint(@RequestBody PurchaseOrder order) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createPurchaseOrder(order));
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderServiceFacade.createPurchaseOrder(order));
     }
 
 }
