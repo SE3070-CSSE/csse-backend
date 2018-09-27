@@ -6,6 +6,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.data.annotation.Id;
 
 public class ApplicationUser {
@@ -51,9 +54,23 @@ public class ApplicationUser {
 	private String lastLogin;
 	private String modifiedDate;
 	
-	public ApplicationUser(String emp_ID, String emp_type, String firstname, String lastname, String address, String email,
-			String phone, String username, String password, List<String> roles, String createdDate, String lastLogin,
-			String modifiedDate) {
+	// @JsonCreator annotation was added because jackson would not detect the constructor automatically
+    @JsonCreator
+	public ApplicationUser(
+		@JsonProperty("_id") String emp_ID, 
+		@JsonProperty("emp_type") String emp_type, 
+		@JsonProperty("firstname") String firstname, 
+		@JsonProperty("lastname") String lastname, 
+		@JsonProperty("address") String address, 
+		@JsonProperty("email") String email,
+		@JsonProperty("phone") String phone, 
+		@JsonProperty("username") String username, 
+		@JsonProperty("password") String password, 
+		@JsonProperty("roles") List<String> roles, 
+		@JsonProperty("createdDate") String createdDate, 
+		@JsonProperty("lastLogin") String lastLogin,
+		@JsonProperty("modifiedDate") String modifiedDate
+	) {
 		this.emp_ID = emp_ID;
 		this.emp_type = emp_type;
 		this.firstname = firstname;
