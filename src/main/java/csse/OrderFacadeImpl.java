@@ -1,10 +1,15 @@
-package csse.orders;
+package csse;
 
+import csse.orders.OrderService;
+import csse.orders.IOrderFacade;
+import csse.orders.OrderStatus;
+import csse.orders.PurchaseOrder;
+import csse.requests.IRequestFacade;
 import csse.requests.PurchaseRequest;
 import csse.requests.PurchaseRequestService;
-import csse.requests.RequestItem;
 import csse.requests.RequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -14,13 +19,13 @@ import java.util.List;
  * @author Damsith Karunaratna(dammakaru@gmail.com) on 9/27/2018.
  */
 @Service
-public class OrderServiceFacadeImpl implements OrderServiceFacade {
+public class SystemFacadeImpl implements IOrderFacade, IRequestFacade {
 
     private PurchaseRequestService requestService;
     private OrderService orderService;
 
     @Autowired
-    public OrderServiceFacadeImpl(OrderService orderService, PurchaseRequestService requestService) {
+    public SystemFacadeImpl(OrderService orderService, PurchaseRequestService requestService) {
         this.orderService = orderService;
         this.requestService = requestService;
     }
@@ -41,6 +46,26 @@ public class OrderServiceFacadeImpl implements OrderServiceFacade {
     @Override
     public List<PurchaseOrder> getAllOrders() {
         return orderService.fetchAll();
+    }
+
+    @Override
+    public List<PurchaseRequest> getAllRequests() {
+        return null;
+    }
+
+    @Override
+    public List<PurchaseRequest> getApprovedRequests() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity createRequest(PurchaseRequest request) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Object> approveItem(List<PurchaseRequest> purchaseRequests) {
+        return null;
     }
 
     @Override
