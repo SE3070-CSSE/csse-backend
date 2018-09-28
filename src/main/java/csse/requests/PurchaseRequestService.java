@@ -32,18 +32,18 @@ public class PurchaseRequestService {
         return repository.save(purchaseRequest);
     }
 
-    List<PurchaseRequest> getApprovedRequests() {
+    public List<PurchaseRequest> getApprovedRequests() {
         List<String> statusList = new ArrayList<>();
         statusList.add(RequestStatus.APPROVED.name());
         statusList.add(RequestStatus.PROCESSING.name());
         return repository.getAllByRequestStatusIn(statusList);
     }
 
-    List<PurchaseRequest> fetchAll() {
+    public List<PurchaseRequest> fetchAll() {
         return  repository.findAll();
     }
 
-    List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests) {
+    public List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests) {
         return repository.saveAll(purchaseRequests);
     }
 

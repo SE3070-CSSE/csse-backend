@@ -19,13 +19,13 @@ import java.util.List;
  * @author Damsith Karunaratna(dammakaru@gmail.com) on 9/27/2018.
  */
 @Service
-public class SystemFacadeImpl implements IOrderFacade, IRequestFacade {
+public class OrderFacadeImpl implements IOrderFacade, IRequestFacade {
 
     private PurchaseRequestService requestService;
     private OrderService orderService;
 
     @Autowired
-    public SystemFacadeImpl(OrderService orderService, PurchaseRequestService requestService) {
+    public OrderFacadeImpl(OrderService orderService, PurchaseRequestService requestService) {
         this.orderService = orderService;
         this.requestService = requestService;
     }
@@ -50,27 +50,23 @@ public class SystemFacadeImpl implements IOrderFacade, IRequestFacade {
 
     @Override
     public List<PurchaseRequest> getAllRequests() {
-        return null;
+        return requestService.fetchAll();
     }
 
     @Override
     public List<PurchaseRequest> getApprovedRequests() {
-        return null;
+        return requestService.getApprovedRequests();
     }
 
     @Override
-    public ResponseEntity createRequest(PurchaseRequest request) {
-        return null;
+    public PurchaseRequest createRequest(PurchaseRequest request) {
+        return requestService.createRequest(request);
     }
 
     @Override
-    public ResponseEntity<Object> approveItem(List<PurchaseRequest> purchaseRequests) {
-        return null;
+    public List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests) {
+        return requestService.approveRequests(purchaseRequests);
     }
 
-    @Override
-    public void dropTable() {
-        orderService.cleanDatabase();
-    }
 
 }

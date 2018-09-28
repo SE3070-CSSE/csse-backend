@@ -20,16 +20,16 @@ public class OrderService {
         this.repository = repository;
     }
 
-    void cleanDatabase() {
+    public void cleanDatabase() {
         repository.deleteAll();
     }
 
 
-    PurchaseOrder saveOrder(PurchaseOrder purchaseOrder) {
+    public PurchaseOrder saveOrder(PurchaseOrder purchaseOrder) {
         return repository.save(purchaseOrder);
     }
 
-    List<PurchaseOrder> fetchAll() {
+    public List<PurchaseOrder> fetchAll() {
         return repository.findAll();
     }
 

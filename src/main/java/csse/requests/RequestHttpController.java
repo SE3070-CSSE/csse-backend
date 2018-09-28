@@ -1,5 +1,6 @@
 package csse.requests;
 
+import csse.OrderFacadeImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,26 +11,21 @@ import java.util.List;
 @RestController
 public class RequestHttpController {
 
-    private final PurchaseRequestService purchaseRequestService;
+    private final IRequestFacade purchaseRequestService;
 
     @Autowired
-    public RequestHttpController(PurchaseRequestService purchaseRequestService) {
+    public RequestHttpController(OrderFacadeImpl purchaseRequestService) {
         this.purchaseRequestService = purchaseRequestService;
     }
 
     @GetMapping("/requests")
     public List<PurchaseRequest> getAllRequestsEndpoint() {
-        return purchaseRequestService.fetchAll();
+        return purchaseRequestService.getAllRequests();
     }
 
     @GetMapping("/requests/approved")
     public List<PurchaseRequest> getApprovedRequests() {
         return purchaseRequestService.getApprovedRequests();
-    }
-
-    @DeleteMapping("/requests")
-    public void dropTableEndpoint() {
-        purchaseRequestService.cleanDatabase();
     }
 
     @PostMapping("/requests")

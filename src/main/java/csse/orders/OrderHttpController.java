@@ -1,5 +1,6 @@
 package csse.orders;
 
+import csse.OrderFacadeImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,26 +11,21 @@ import java.util.List;
 @RestController
 public class OrderHttpController {
 
-    private final OrderServiceFacade orderServiceFacade;
+    private final IOrderFacade orderService;
 
     @Autowired
-    public OrderHttpController(OrderServiceFacadeImpl orderServiceFacade) {
-        this.orderServiceFacade = orderServiceFacade;
+    public OrderHttpController(OrderFacadeImpl orderService) {
+        this.orderService = orderService;
     }
 
     @GetMapping("/orders")
     public List<PurchaseOrder> getAllOrdersEndpoint() {
-        return orderServiceFacade.getAllOrders();
-    }
-
-    @DeleteMapping("/orders")
-    public void dropTableEndpoint() {
-        orderServiceFacade.dropTable();
+        return orderService.getAllOrders();
     }
 
     @PostMapping("/orders")
     public ResponseEntity createOrderEndpoint(@RequestBody PurchaseOrder order) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderServiceFacade.createPurchaseOrder(order));
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createPurchaseOrder(order));
     }
 
 }
