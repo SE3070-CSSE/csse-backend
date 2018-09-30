@@ -7,10 +7,12 @@ public class SecurityConstants {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
     public static final String SIGN_UP_URL = "/users/signup";
-//    public static final String LOGIN_URL = "/user/login";
-//    public static final String USER_LIST_URL = "/user/list";
-//    public static final String GET_USER_URL = "/user/{username}";
-//    public static final String DEACTIVATE_URL = "/user/deactivate/{username}"; 
-//    public static final String EDIT_USER_URL = "/user/editUser/{username}";
-//    public static final String RESET_PASSWORD_URL ="user/resetPassword/{username}";
+//    public static final String LOGIN_URL = "/users/login";
+//    public static final String USER_LIST_URL = "/users/list";
+//    public static final String GET_USER_URL = "/users/{username}";
+//    public static final String SEARCH_URL= "/users/search/{EID}";
+//    public static final String DEACTIVATE_URL = "/users/deactivate}"; 
+//    public static final String EDIT_USER_URL = "/users/update/{username}";
+//    public static final String RESET_PASSWORD_URL ="/users/resetpassword/{username}";
+//    public static final String FORGOT_URL="/users/forgotpassword/{username}";
 }

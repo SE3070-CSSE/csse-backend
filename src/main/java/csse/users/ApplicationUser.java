@@ -45,14 +45,14 @@ public class ApplicationUser {
 	private String password;
 	
 	@NotNull
-	private List<String> roles;
+	private String roles;
 	
 	private String createdDate;
 	private String lastLogin;
 	private String modifiedDate;
 	
 	public ApplicationUser(String emp_ID, String emp_type, String firstname, String lastname, String address, String email,
-			String phone, String username, String password, List<String> roles, String createdDate, String lastLogin,
+			String phone, String username, String password, String roles, String createdDate, String lastLogin,
 			String modifiedDate) {
 		this.emp_ID = emp_ID;
 		this.emp_type = emp_type;
@@ -149,11 +149,11 @@ public class ApplicationUser {
 		this.password = password;
 	}
 
-	public List<String> getRoles() {
+	public String getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
+	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 

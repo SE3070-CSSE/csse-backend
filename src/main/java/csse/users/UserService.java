@@ -6,13 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 	
-	private final UserDAO repo;
+	private UserDAO repo;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
@@ -65,16 +67,19 @@ public class UserService {
 	}
 	
 	//get all users
+	@Secured("hasRole('ROLE_ADMIN')")
 	List<ApplicationUser> all(){
 		return repo.findAll();
 	}
 	
 	//get user by username
+	//@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public ApplicationUser findByUsername(String username) {
 		return repo.findByUsername(username);
 	}
 	
 	//get user by emp_ID
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	ApplicationUser findByemp(String ID) {
 		users=repo.findAll();
 		for(ApplicationUser u: users) {
@@ -86,6 +91,7 @@ public class UserService {
 	}
 		
 	//reset password through profile
+	//@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public String resetPassword(String username, String cpwd, String npwd, String confirm) {
         ApplicationUser u=repo.findByUsername(username);
         
@@ -108,6 +114,7 @@ public class UserService {
     }
 	
 	//reset password through forgot passWord
+	//@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public String forgotPassword(String username, String np, String confirm) {
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -129,6 +136,7 @@ public class UserService {
     }
 	
 	//edit user profile
+	//@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public ApplicationUser editProfile(String username, String firstname, String lastname, String address,
 			String phone, String email) {
 		users=repo.findAll();
@@ -155,6 +163,7 @@ public class UserService {
 	}
 	
 	//deactivate user
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String deactivate(String ID) {
 		
 		ApplicationUser u=this.findByemp(ID);

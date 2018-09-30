@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,6 +19,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity	// Enable security config. This annotation denotes config for spring security.
+@EnableGlobalMethodSecurity(securedEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
@@ -45,7 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .csrf().disable()
         .authorizeRequests() // authorization requests config
+        		.antMatchers(HttpMethod.GET,"/users/list").access("hasRole('ROLE_ADMIN')")
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources",
