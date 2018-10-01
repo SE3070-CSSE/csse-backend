@@ -45,15 +45,15 @@ public class ApplicationUser {
 	private String password;
 	
 	@NotNull
-	private String roles;
+	private List<String> authorities;
 	
 	private String createdDate;
 	private String lastLogin;
 	private String modifiedDate;
 	
 	public ApplicationUser(String emp_ID, String emp_type, String firstname, String lastname, String address, String email,
-			String phone, String username, String password, String roles, String createdDate, String lastLogin,
-			String modifiedDate) {
+						   String phone, String username, String password, List<String> authorities, String createdDate, String lastLogin,
+						   String modifiedDate) {
 		this.emp_ID = emp_ID;
 		this.emp_type = emp_type;
 		this.firstname = firstname;
@@ -63,7 +63,7 @@ public class ApplicationUser {
 		this.phone = phone;
 		this.username = username;
 		this.password = password;
-		this.roles = roles;
+		this.authorities = authorities;
 		this.createdDate = createdDate;
 		this.lastLogin = lastLogin;
 		this.modifiedDate = modifiedDate;
@@ -149,12 +149,12 @@ public class ApplicationUser {
 		this.password = password;
 	}
 
-	public String getRoles() {
-		return roles;
+	public @NotNull List<String> getAuthorities() {
+		return authorities;
 	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setAuthorities(List<String> authorities) {
+		this.authorities = authorities;
 	}
 
 	public String getCreatedDate() {
@@ -185,7 +185,7 @@ public class ApplicationUser {
 	public String toString() {
 		return "User [_id=" + _id + ", emp_ID=" + emp_ID + ", emp_type=" + emp_type + ", firstname=" + firstname
 				+ ", lastname=" + lastname + ", address=" + address + ", email=" + email + ", phone=" + phone
-				+ ", username=" + username + ", password=" + password + ", roles=" + roles + ", createdDate="
+				+ ", username=" + username + ", password=" + password + ", authorities=" + authorities + ", createdDate="
 				+ createdDate + ", LastLogin=" + lastLogin + ", modifiedDate=" + modifiedDate + "]";
 	}
 	

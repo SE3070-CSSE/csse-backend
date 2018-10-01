@@ -11,21 +11,16 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebSecurity	// Enable security config. This annotation denotes config for spring security.
-@EnableWebMvc
-//@EnableWebMvcSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(securedEnabled=true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
     private UserDetailsServiceImpl UsersService;
@@ -44,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
 	
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
@@ -51,9 +47,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .and()
         .csrf().disable()
         .authorizeRequests() // authorization requests config
-        		//.antMatchers(HttpMethod.GET, "/users/list").access("hasRole('ADMIN')")
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                
+                .antMatchers(HttpMethod.GET,"/users/list").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET,"/users/details/*").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET,"/users/search/*").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH,"/users/update/*").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.DELETE,"/users/deactivate").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH,"/users/resetpassword/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.PATCH,"/users/forgotpassword/*").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources",
@@ -76,7 +77,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(UsersService).passwordEncoder(bCryptPasswordEncoder);
-        
     }
 
     @Bean
@@ -85,5 +85,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
-    
 }
