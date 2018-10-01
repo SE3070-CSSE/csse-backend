@@ -20,22 +20,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserHttpController {
 
 	private UserService service;
-	
+		
 	@Autowired
-	public UserHttpController(UserService service) {
-		this.service = service;
+	public UserHttpController(UserService service, UserDAO repo) {
+		this.service = service;		
 	}
 	
 	@PostMapping("/signup")
     public String signUp(@RequestBody ApplicationUser user) {
         return service.register(user);
     }
-	
-	
+		
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/list")
-	
-    public List<ApplicationUser> list() {
-        return service.all();
+	public List<ApplicationUser> list() {
+       return service.all();
     }
 
     @GetMapping("/{username}")
