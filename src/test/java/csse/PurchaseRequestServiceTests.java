@@ -64,12 +64,24 @@ public class PurchaseRequestServiceTests {
     public void getOnlyApprovedRequests() throws Exception {
 
         logger.info("Running setsPurchaseRequestIdOnSave");
-        PurchaseRequest savedRequest = purchaseRequestService.createRequest(purchaseRequestApproved);
-        Assert.assertNotNull("After creation RequestID should not be null", savedRequest.getId());
+        PurchaseRequest savedRequest1 = purchaseRequestService.createRequest(purchaseRequestPending);
+        PurchaseRequest savedRequest2 = purchaseRequestService.createRequest(purchaseRequestApproved);
+//        PurchaseRequest savedRequest3 = purchaseRequestService.createRequest(purchaseRequestApproved);
 
         List<PurchaseRequest> approvedRequests = purchaseRequestService.getApprovedRequests();
-//        List<PurchaseRequest> approvedRequests = purchaseRequestService.fetchAll();
-        Assert.assertEquals("approved request length should be 1", 1, approvedRequests.size());
+        Assert.assertEquals("approved request size should be 1", 1, approvedRequests.size());
+    }
+
+    @Test
+    public void getAllRequests() throws Exception {
+        logger.info("Running setsPurchaseRequestIdOnSave");
+        PurchaseRequest savedRequest1 = purchaseRequestService.createRequest(purchaseRequestApproved);
+        PurchaseRequest savedRequest2 = purchaseRequestService.createRequest(purchaseRequestPending);
+//        PurchaseRequest savedRequest3 = purchaseRequestService.createRequest(purchaseRequestApproved);
+
+        List<PurchaseRequest> allRequests = purchaseRequestService.fetchAll();
+        Assert.assertEquals("approved request size should be 2", 2, allRequests.size());
+
     }
 
 
