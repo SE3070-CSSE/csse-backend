@@ -5,5 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface SupplierDAO  extends MongoRepository<Supplier, String> {
 
+    public Supplier findSupplierByName (String supplierName);
 
 }
