@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,14 +30,14 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
-                
-        // Remember that Spring needs roles to be in this format: "ROLE_" + userRole (i.e. "ROLE_ADMIN")
-		// So, we need to set it to that format, so we can verify and compare roles (i.e. hasRole("ADMIN")).
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRoles().toString()));
 
-        // The "User" class is provided by Spring and represents a model class for user to be returned by UserDetailsService
-		// And used by auth manager to verify and check user authentication.
-        return new User(user.getUsername(), user.getPassword(), authorities);
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (String authority: user.getAuthorities()) {
+            authorities.add(new SimpleGrantedAuthority(authority));
+        }
+
+        return new User(user.getUsername(), user.getPassword(), true, true, true,
+                true, authorities);
     }
     
 }

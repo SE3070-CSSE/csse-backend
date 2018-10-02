@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserHttpController {
 
-	private final UserService service;
+	private UserService service;
 	
 	@Autowired
 	public UserHttpController(UserService service) {
@@ -28,13 +30,14 @@ public class UserHttpController {
     public String signUp(@RequestBody ApplicationUser user) {
         return service.register(user);
     }
-
-    @GetMapping("/list")
-    List<ApplicationUser> list() {
+	
+	
+	@GetMapping("/list")
+    public List<ApplicationUser> list() {
         return service.all();
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/details/{username}")
     ApplicationUser details(@PathVariable(value="username")String username) {
         return service.findByUsername(username);
     }
@@ -44,8 +47,7 @@ public class UserHttpController {
     ApplicationUser EID(@PathVariable(value="EID")String eid) {
        return service.findByemp(eid);
     }    
-    
-    
+        
     @PatchMapping("/update/{username}")
     ApplicationUser update(@PathVariable(value="username")String u, @RequestBody Map<String, String> body) {
     	String username = u;
