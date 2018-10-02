@@ -1,20 +1,24 @@
 package csse.orders;
 
-import csse.OrderFacadeImpl;
+import csse.IOrderServicesFacade;
+import csse.OrderServicesFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 public class OrderHttpController {
 
-    private final IOrderFacade orderService;
+    private final IOrderServicesFacade orderService;
 
     @Autowired
-    public OrderHttpController(OrderFacadeImpl orderService) {
+    public OrderHttpController(OrderServicesFacade orderService) {
         this.orderService = orderService;
     }
 

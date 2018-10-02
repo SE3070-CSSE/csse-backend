@@ -40,7 +40,7 @@ public class PurchaseRequestService {
     }
 
     public List<PurchaseRequest> fetchAll() {
-        return  repository.findAll();
+        return repository.findAll();
     }
 
     public List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests) {

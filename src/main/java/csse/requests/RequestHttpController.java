@@ -1,6 +1,7 @@
 package csse.requests;
 
-import csse.OrderFacadeImpl;
+import csse.IOrderServicesFacade;
+import csse.OrderServicesFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +12,10 @@ import java.util.List;
 @RestController
 public class RequestHttpController {
 
-    private final IRequestFacade purchaseRequestService;
+    private final IOrderServicesFacade purchaseRequestService;
 
     @Autowired
-    public RequestHttpController(OrderFacadeImpl purchaseRequestService) {
+    public RequestHttpController(OrderServicesFacade purchaseRequestService) {
         this.purchaseRequestService = purchaseRequestService;
     }
 

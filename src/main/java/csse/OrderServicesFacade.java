@@ -1,15 +1,12 @@
 package csse;
 
 import csse.orders.OrderService;
-import csse.orders.IOrderFacade;
 import csse.orders.OrderStatus;
 import csse.orders.PurchaseOrder;
-import csse.requests.IRequestFacade;
 import csse.requests.PurchaseRequest;
 import csse.requests.PurchaseRequestService;
 import csse.requests.RequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,13 +16,13 @@ import java.util.List;
  * @author Damsith Karunaratna(dammakaru@gmail.com) on 9/27/2018.
  */
 @Service
-public class OrderFacadeImpl implements IOrderFacade, IRequestFacade {
+public class OrderServicesFacade implements IOrderServicesFacade {
 
     private PurchaseRequestService requestService;
     private OrderService orderService;
 
     @Autowired
-    public OrderFacadeImpl(OrderService orderService, PurchaseRequestService requestService) {
+    public OrderServicesFacade(OrderService orderService, PurchaseRequestService requestService) {
         this.orderService = orderService;
         this.requestService = requestService;
     }
