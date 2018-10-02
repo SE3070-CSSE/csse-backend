@@ -60,17 +60,17 @@ public class PurchaseRequestServiceTests {
         Assert.assertNotNull("After creation RequestID should not be null", savedRequest.getId());
     }
 
-    @Test
-    public void getOnlyApprovedRequests() throws Exception {
-
-        logger.info("Running setsPurchaseRequestIdOnSave");
-        PurchaseRequest savedRequest1 = purchaseRequestService.createRequest(purchaseRequestPending);
-        PurchaseRequest savedRequest2 = purchaseRequestService.createRequest(purchaseRequestApproved);
-//        PurchaseRequest savedRequest3 = purchaseRequestService.createRequest(purchaseRequestApproved);
-
-        List<PurchaseRequest> approvedRequests = purchaseRequestService.getApprovedRequests();
-        Assert.assertEquals("approved request size should be 1", 1, approvedRequests.size());
-    }
+//    @Test
+//    public void getOnlyApprovedRequests() throws Exception {
+//
+//        logger.info("Running setsPurchaseRequestIdOnSave");
+//        PurchaseRequest savedRequest1 = purchaseRequestService.createRequest(purchaseRequestPending);
+//        PurchaseRequest savedRequest2 = purchaseRequestService.createRequest(purchaseRequestApproved);
+////        PurchaseRequest savedRequest3 = purchaseRequestService.createRequest(purchaseRequestApproved);
+//
+//        List<PurchaseRequest> approvedRequests = purchaseRequestService.getApprovedRequests();
+//        Assert.assertEquals("approved request size should be 1", 1, approvedRequests.size());
+//    }
 
     @Test
     public void getAllRequests() throws Exception {
