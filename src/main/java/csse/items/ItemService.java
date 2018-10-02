@@ -18,23 +18,23 @@ public class ItemService {
         this.repository = repository;
     }
 
-    void cleanDatabase() {
+    public void cleanDatabase() {
         repository.deleteAll();
     }
 
-    void deleteItems(List<Item> items) {
+    public void deleteItems(List<Item> items) {
         this.repository.deleteAll(items);
     }
 
-    Item saveItem(Item i) {
+    public Item saveItem(Item i) {
         return repository.save(i);
     }
 
-    List<Item> fetchAll() {
+    public List<Item> fetchAll() {
         return  repository.findAll();
     }
 
-    Item fetchByItemName(String itemName) {
+    public Item fetchByItemName(String itemName) {
         return repository.findByItemName(itemName);
     }
 
@@ -42,7 +42,7 @@ public class ItemService {
         return repository.findByCategory(category);
     }
 
-    Item updateItem(Item item) {
+    public Item updateItem(Item item) {
         return repository.save(item);
     }
 }

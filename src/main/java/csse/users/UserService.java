@@ -26,7 +26,7 @@ public class UserService {
 	private List<ApplicationUser> users;
 	
 	//register
-	String register(ApplicationUser user) {
+	public String register(ApplicationUser user) {
 		
 		users=repo.findAll();
 		
@@ -67,7 +67,7 @@ public class UserService {
 	}
 	
 	//get all users
-	List<ApplicationUser> all(){
+	public List<ApplicationUser> all(){
 		return repo.findAll();
 	}
 	
@@ -79,7 +79,7 @@ public class UserService {
 	
 	//get user by emp_ID
 	//@PreAuthorize("hasRole('ROLE_ADMIN')")
-	ApplicationUser findByemp(String ID) {
+	public ApplicationUser findByemp(String ID) {
 		users=repo.findAll();
 		for(ApplicationUser u: users) {
 			if(u.getEmp_ID().equals(ID)) {
