@@ -17,7 +17,7 @@ public class PurchaseRequestService {
         this.repository = repository;
     }
 
-    void cleanDatabase() {
+    public void cleanDatabase() {
         repository.deleteAll();
     }
 
