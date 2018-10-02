@@ -24,7 +24,7 @@ public class SupplierService {
     List<Supplier> FetchAll(){ return  repository.findAll();}
 
     Supplier findSupplierByName(String supplierName){
-        return repository.findSupplierByName(supplierName);
+        return repository.findBySupplierName(supplierName);
     }
 
 
