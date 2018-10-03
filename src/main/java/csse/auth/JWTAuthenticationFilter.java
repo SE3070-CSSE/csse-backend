@@ -62,7 +62,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     	
     	// Add token to header
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + generateJWTToken(authResult));
-        
+        response.addHeader("Content-Type", "application/json");
+        response.getWriter().write("{\"" + HEADER_STRING + "\":\"Bearer "  + generateJWTToken(authResult)+"\"}");
 //        ApplicationUser u = new ApplicationUser();
 //        
 //        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
