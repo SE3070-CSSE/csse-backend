@@ -28,7 +28,7 @@ public class SupplierHttpController {
         return supplierService.findSupplierByName(name);
     }
 
-    @DeleteMapping("/items")
+    @DeleteMapping("/suppliers")
     public void deleteSuppliersEndpoint(@RequestBody List<Supplier> suppliers) {
         supplierService.deleteSuppliers(suppliers);
     }
