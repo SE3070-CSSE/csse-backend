@@ -5,5 +5,6 @@ package csse.orders;
  */
 public enum OrderStatus {
     PENDING_DELIVERY,
-    DELIVERED
+    DELIVERY_COMPLETED,
+    PARTIALLY_DELIVERED
 }

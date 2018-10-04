@@ -1,5 +1,6 @@
 package csse;
 
+import csse.grn.Grn;
 import csse.orders.PurchaseOrder;
 import csse.requests.PurchaseRequest;
 
@@ -15,4 +16,7 @@ public interface IOrderServicesFacade {
     List<PurchaseRequest> getApprovedRequests();
     PurchaseRequest createRequest(PurchaseRequest request);
     List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests);
+    Grn createGrn(Grn grn);
+    void deleteGrns(List<Grn> grns);
+    List<Grn> getAllGrns();
 }

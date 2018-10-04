@@ -2,5 +2,5 @@ package csse.grn;
 
 public enum GrnStatus {
     PENDING_PAYMENT,
-    PAYMENT
+    PAYMENT_COMPLETED
 }

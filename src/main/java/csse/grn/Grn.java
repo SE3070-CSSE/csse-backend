@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import java.util.Date;
 import java.util.List;
 
-public class grn {
+public class Grn {
 
     @Id
     private String _id;
@@ -26,7 +26,7 @@ public class grn {
 
 
     @JsonCreator
-    public grn(
+    public Grn(
             @JsonProperty("purchaseOrder") PurchaseOrder purchaseOrder,
             @JsonProperty("supplier") Supplier supplier,
             @JsonProperty("recievedOn") Date recievedOn,

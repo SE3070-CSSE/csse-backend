@@ -34,4 +34,15 @@ public class OrderService {
         return  repository.findAll();
     }
 
+    public PurchaseOrder updateOrder(PurchaseOrder purchaseOrder) {
+        return repository.save(purchaseOrder);
+    }
+
+    public boolean allItemsReceived(PurchaseOrder order) {
+        for (OrderLineItem item : order.getOrderItems()) {
+            if (!item.isReceived()) return false;
+        }
+        return true;
+    }
+
 }

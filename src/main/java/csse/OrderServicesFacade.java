@@ -1,5 +1,8 @@
 package csse;
 
+import csse.grn.Grn;
+import csse.grn.GrnService;
+import csse.grn.GrnStatus;
 import csse.orders.OrderService;
 import csse.orders.OrderStatus;
 import csse.orders.PurchaseOrder;
@@ -20,11 +23,13 @@ public class OrderServicesFacade implements IOrderServicesFacade {
 
     private PurchaseRequestService requestService;
     private OrderService orderService;
+    private GrnService grnService;
 
     @Autowired
-    public OrderServicesFacade(OrderService orderService, PurchaseRequestService requestService) {
+    public OrderServicesFacade(GrnService grnService, OrderService orderService, PurchaseRequestService requestService) {
         this.orderService = orderService;
         this.requestService = requestService;
+        this.grnService = grnService;
     }
 
     @Override
@@ -63,6 +68,29 @@ public class OrderServicesFacade implements IOrderServicesFacade {
     @Override
     public List<PurchaseRequest> approveRequests(List<PurchaseRequest> purchaseRequests) {
         return requestService.approveRequests(purchaseRequests);
+    }
+
+    @Override
+    public Grn createGrn(Grn grn) {
+        grn.setPaymentStatus(GrnStatus.PENDING_PAYMENT.name());
+        grn.setRecievedOn(new Date());
+        if (orderService.allItemsReceived(grn.getPurchaseOrder())) {
+            grn.getPurchaseOrder().setStatus(OrderStatus.DELIVERY_COMPLETED.name());
+        } else {
+            grn.getPurchaseOrder().setStatus(OrderStatus.PARTIALLY_DELIVERED.name());
+        }
+        this.orderService.updateOrder(grn.getPurchaseOrder());
+        return grnService.saveGrn(grn);
+    }
+
+    @Override
+    public void deleteGrns(List<Grn> grns) {
+        grnService.deleteGrns(grns);
+    }
+
+    @Override
+    public List<Grn> getAllGrns() {
+        return grnService.fetchAll();
     }
 
 

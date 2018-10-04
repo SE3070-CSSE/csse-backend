@@ -1,6 +1,5 @@
 package csse.grn;
 
-import csse.orders.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +20,17 @@ public class GrnService  {
         repository.deleteAll();
     }
 
-    grn saveGrn(grn grn) {
+    public void deleteGrns(List<Grn> grns) {
+        this.repository.deleteAll(grns);
+    }
+
+    public Grn saveGrn(Grn grn) {
         GrnStatus status = GrnStatus.PENDING_PAYMENT;
         grn.setPaymentStatus(status.name());
         grn.setRecievedOn(new Date());
         return repository.save(grn); }
 
-    List<grn> fetchAll() {
+    public List<Grn> fetchAll() {
         return  repository.findAll();
     }
 }
