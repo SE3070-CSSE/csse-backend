@@ -2,6 +2,7 @@ package csse.grn;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import csse.orders.PurchaseOrder;
 import csse.requests.PurchaseRequest;
 import csse.suppliers.Supplier;
 import org.springframework.data.annotation.Id;
@@ -15,7 +16,7 @@ public class grn {
     @Id
     private String _id;
     @DBRef
-    private PurchaseRequest purchaseRequest;
+    private PurchaseOrder purchaseOrder;
     @DBRef
     private Supplier supplier;
     private Date recievedOn;
@@ -26,14 +27,14 @@ public class grn {
 
     @JsonCreator
     public grn(
-            @JsonProperty("purchaseRequest") PurchaseRequest purchaseRequest,
+            @JsonProperty("purchaseOrder") PurchaseOrder purchaseOrder,
             @JsonProperty("supplier") Supplier supplier,
             @JsonProperty("recievedOn") Date recievedOn,
             @JsonProperty("paymentStatus") String paymentStatus,
             @JsonProperty("orderItems") List<GrnLineItem> grnItems,
             @JsonProperty("totalPrice") double totalPrice
     ) {
-        this.purchaseRequest = purchaseRequest;
+        this.purchaseOrder = purchaseOrder;
         this.supplier = supplier;
         this.recievedOn = recievedOn;
         this.paymentStatus = paymentStatus;
@@ -49,12 +50,12 @@ public class grn {
         this._id = _id;
     }
 
-    public PurchaseRequest getPurchaseRequest() {
-        return purchaseRequest;
+    public PurchaseOrder getPurchaseOrder() {
+        return purchaseOrder;
     }
 
-    public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
-        this.purchaseRequest = purchaseRequest;
+    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
     }
 
     public Supplier getSupplier() {
