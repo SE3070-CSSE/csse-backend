@@ -28,14 +28,19 @@ public class SupplierHttpController {
         return supplierService.findSupplierByName(name);
     }
 
-    @DeleteMapping("/suppliers")
-    public void dropTableEndpoint() {
-        supplierService.cleanDatabase();
+    @DeleteMapping("/items")
+    public void deleteSuppliersEndpoint(@RequestBody List<Supplier> suppliers) {
+        supplierService.deleteSuppliers(suppliers);
     }
 
     @PostMapping("/suppliers")
     public ResponseEntity<Object> createSupplierEndpoint(@RequestBody Supplier supplier) {
         return ResponseEntity.status(HttpStatus.CREATED).body(supplierService.saveSupplier(supplier));
+    }
+
+    @PutMapping("/suppliers")
+    public ResponseEntity<Object> updateItemEndpoint(@RequestBody Supplier supplier) {
+        return ResponseEntity.status(HttpStatus.OK).body(supplierService.updateSupplier(supplier));
     }
 
 
