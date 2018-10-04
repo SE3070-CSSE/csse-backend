@@ -13,17 +13,17 @@ public class SupplierService {
     @Autowired
     public SupplierService(SupplierDAO repository){this.repository=repository;}
 
-    void cleanDatabase() {
+    public void cleanDatabase() {
         repository.deleteAll();
     }
 
-    Supplier saveSupplier(Supplier s) {
+    public Supplier saveSupplier(Supplier s) {
         return repository.save(s);
     }
 
-    List<Supplier> FetchAll(){ return  repository.findAll();}
+    public List<Supplier> FetchAll(){ return  repository.findAll();}
 
-    Supplier findSupplierByName(String supplierName){
+    public Supplier findSupplierByName(String supplierName){
         return repository.findBySupplierName(supplierName);
     }
 
