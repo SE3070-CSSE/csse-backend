@@ -1,4 +1,7 @@
 # CSSE Backend [![Build Status](https://travis-ci.org/SE3070-CSSE/csse-backend.svg?branch=development)](https://travis-ci.org/SE3070-CSSE/csse-backend)
+
+- Documentation of endpoints in [Swagger](https://procurement-system.herokuapp.com/swagger-ui.html)
+
 ## Git Workflow
 
 This document describes the workflow, conventions, and best practices to use with regard to Git.For those of you who are new to git, or want a refresher, the following links will help
