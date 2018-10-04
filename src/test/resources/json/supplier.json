@@ -1,9 +1,6 @@
 {
-  "supplier": {
-    "supplierName": "Macsons and Sons",
-    "email": "mns@gmail.com",
-    "address": "malabe",
-    "contactNumber": "0112987465",
-    "items": null
-  }
+  "supplierName": "Macsons and Sons",
+  "supplierEmail": "mns@gmail.com",
+  "supplierAddress": "malabe",
+  "supplierContactNumber": "0112987465"
 }
