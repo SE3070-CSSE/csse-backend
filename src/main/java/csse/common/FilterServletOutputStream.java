@@ -1,4 +1,4 @@
-package csse.policies;
+package csse.common;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;

@@ -1,4 +1,4 @@
-package csse.policies;
+package csse.common;
 
 import org.springframework.http.HttpStatus;
 
