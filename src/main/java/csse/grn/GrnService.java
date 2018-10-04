@@ -25,9 +25,6 @@ public class GrnService  {
     }
 
     public Grn saveGrn(Grn grn) {
-        GrnStatus status = GrnStatus.PENDING_PAYMENT;
-        grn.setPaymentStatus(status.name());
-        grn.setRecievedOn(new Date());
         return repository.save(grn); }
 
     public List<Grn> fetchAll() {
