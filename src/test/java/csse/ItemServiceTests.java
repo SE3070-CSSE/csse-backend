@@ -49,6 +49,6 @@ public class ItemServiceTests {
     	Item savedItem1 =itemService.saveItem(item1);
     	Item savedItem2 =itemService.saveItem(item2);
     	List<Item> allItems = itemService.fetchAll();
-    	Assert.assertEquals("Approved item size should be 3", 3, allItems.size());
+    	Assert.assertEquals("Approved item size should be 2", 2, allItems.size());
     }
 }
