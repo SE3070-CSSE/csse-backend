@@ -177,5 +177,9 @@ public class UserService {
 		} catch (Exception NullPointerException) {
 			return "User doesn't exist";
 		}		
-	}	
+	}
+	
+	public void cleanDatabase() {
+		repo.deleteAll();
+	}
 }
