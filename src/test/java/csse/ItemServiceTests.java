@@ -32,7 +32,8 @@ public class ItemServiceTests {
     public void setUp() {
         itemService.cleanDatabase();
         System.out.println("Setup for tests");
-        item1 = new Item("TestItem1", null, "Cat1", 200.00, "description");
+        item1 = new Item("TestItem1", null, "testing1", 200.00, "description");
+        item2 = new Item("TestItem2", null, "testing2", 300.00, "description2");
     }
 
     @Test
