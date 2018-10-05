@@ -15,6 +15,11 @@ import java.util.List;
 @RestController
 public class OrderHttpController {
 
+    /**
+     * The Facade class 'OrderServicesFacade' is injected using constructor injection via the spring IoC container
+     * It provides the HttpController with access to a simplified interface to
+     * the underlying services.
+     */
     private final IOrderServicesFacade orderService;
 
     @Autowired

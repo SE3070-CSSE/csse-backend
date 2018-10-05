@@ -11,6 +11,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
+ * Configuration file for auto generated Swagger API documentation.
  * @author Damsith Karunaratna(dammakaru@gmail.com) on 9/27/2018.
  */
 @Configuration

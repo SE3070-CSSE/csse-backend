@@ -7,6 +7,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
+ * Cross Origin Resource Scripting configuration for the application
+ * TODO: Add a list of sites to the Allowed Origins instead of using a wildcard "*"
  * @author Damsith Karunaratna(dammakaru@gmail.com) on 10/4/2018.
  */
 @Configuration

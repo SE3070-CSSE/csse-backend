@@ -3,7 +3,6 @@ package csse.grn;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import csse.orders.PurchaseOrder;
-import csse.requests.PurchaseRequest;
 import csse.suppliers.Supplier;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;

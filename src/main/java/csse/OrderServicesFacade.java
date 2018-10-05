@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * This class provides a simplified interface to clients accessing methods
+ * which require more than two services. Thereby promoting loose coupling
  * @author Damsith Karunaratna(dammakaru@gmail.com) on 10/03/2018.
  */
 @Service

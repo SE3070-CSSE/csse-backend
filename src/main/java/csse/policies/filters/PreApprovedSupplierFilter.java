@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * *** Example filter implementation ***
  * @author Damsith Karunaratna(dammakaru@gmail.com) on 10/5/2018.
  */
 public class PreApprovedSupplierFilter implements Filter {
