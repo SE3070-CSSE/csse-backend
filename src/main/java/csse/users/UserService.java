@@ -166,17 +166,8 @@ public class UserService {
 	
 	//deactivate user
 	//@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String deactivate(String ID) {
-		
-		ApplicationUser u=this.findByemp(ID);
-		
-		try {
-			repo.delete(u);
-			return "Successfully deactivated";
-			
-		} catch (Exception NullPointerException) {
-			return "User doesn't exist";
-		}		
+	public void deactivate(List<ApplicationUser> u) {
+		repo.deleteAll(u);
 	}
 	
 	public void cleanDatabase() {
