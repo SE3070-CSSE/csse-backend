@@ -91,7 +91,7 @@ public class UserService {
 		
 	//reset password through profile
 	//@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-	public String resetPassword(String username, String cpwd, String npwd, String confirm) {
+	public String resetPassword(String username, String cpwd, String npwd) {
         ApplicationUser u=repo.findByUsername(username);
         
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -102,30 +102,27 @@ public class UserService {
 		  
        // if(u.getPassword().equals(cpwd)) {
 		if(encoder.matches(cpwd, u.getPassword())) {
-        	if(npwd.equals(confirm)) {
+        	
         		u.setPassword(bCryptPasswordEncoder.encode(npwd));
                 //u.setPassword(npwd);
 				u.setModifiedDate(d);
 				
                 repo.save(u);
                 return "Password reset successfully";
-            }
-        	return "The new passwords don't match";
+            
         }
         return "Current password is incorrect!";
     }
 	
 	//reset password through forgot passWord
 	//@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-	public String forgotPassword(String username, String np, String confirm) {
+	public String forgotPassword(String username, String np) {
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		String d=dateFormat.format(date);
 		
-		ApplicationUser u= repo.findByUsername(username);
-        if(np.equals(confirm)) {
-        	
+		ApplicationUser u= repo.findByUsername(username);        	
         	u.setPassword(bCryptPasswordEncoder.encode(np));
             
             //u.setPassword(np);
@@ -133,8 +130,7 @@ public class UserService {
 			
             repo.save(u);
             return "Password reset successfully";
-        }
-        return "Password reset failed";
+        
     }
 	
 	//edit user profile

@@ -71,15 +71,13 @@ public class UserHttpController {
     public String resetPassword(@PathVariable(value="username") String username, @RequestBody Map<String, String> body) {
     	String newp=body.get("new");
     	String currentp=body.get("current");
-    	String confirmp=body.get("confirm");
-    	return service.resetPassword(username, currentp, newp, confirmp);
+    	return service.resetPassword(username, currentp, newp);
     }
     
     
     @PatchMapping("/forgotpassword/{username}")
     public String forgotPassword(@PathVariable(value="username") String username, @RequestBody Map<String, String> body) {
     	String np=body.get("new");
-    	String confirmp=body.get("confirm");
-    	return service.forgotPassword(username, np, confirmp);
+    	return service.forgotPassword(username, np);
     }
 }

@@ -106,23 +106,16 @@ public class UserServiceTests {
 //    @Test
 //    public void resetPasswordPassedTest() throws Exception {
 //        logger.info("Running pass resetPassword");
-//        String response = service.resetPassword("Sam99", "Sam99", "sam99", "sam99");       
+//        String response = service.resetPassword("Sam99", "Sam99", "sam99");       
 //        Assert.assertEquals("user's pwd is reset", "Password reset successfully", response);
 //
 //    }
     
+
 //  @Test
 //  public void resetPasswordFailTest() throws Exception {
 //      logger.info("Running fail resetPassword");
-//      String response = service.resetPassword("Sam99", "Sam99", "sam88", "sam99");       
-//      Assert.assertEquals("user's pwd is not reset", "The new passwords don't match", response);
-//
-//  }
-    
-//  @Test
-//  public void resetPasswordFailTest() throws Exception {
-//      logger.info("Running fail resetPassword");
-//      String response = service.resetPassword("Sam99", "Sam9999", "sam99", "sam99");       
+//      String response = service.resetPassword("Sam99", "Sam9999", "sam99");       
 //      Assert.assertEquals("user's pwd is not reset", "Current password is incorrect!", response);
 //
 //  }
@@ -131,18 +124,11 @@ public class UserServiceTests {
 //    @Test
 //    public void forgotPasswordPassTest() throws Exception {
 //        logger.info("Running pass forgotPassword");
-//        String response = service.forgotPassword("Mathew99", "math", "math");
+//        String response = service.forgotPassword("Mathew99", "math");
 //        Assert.assertEquals("user's pwd is reset", "Password reset successfully", response);
 //
 //    }
     
-//    @Test
-//  public void forgotPasswordFailTest() throws Exception {
-//      logger.info("Running fail forgotPassword");
-//      String response = service.forgotPassword("Mathew99", "math123", "math");
-//      Assert.assertEquals("user's pwd is not reset", "Password reset failed", response);
-//
-//  }
     
 //    
 //    @Test
