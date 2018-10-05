@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ApplicationUser {
 	
 	@Id
@@ -51,9 +54,10 @@ public class ApplicationUser {
 	private String lastLogin;
 	private String modifiedDate;
 	
-	public ApplicationUser(String emp_ID, String emp_type, String firstname, String lastname, String address, String email,
-						   String phone, String username, String password, List<String> authorities, String createdDate, String lastLogin,
-						   String modifiedDate) {
+	@JsonCreator
+	public ApplicationUser(@JsonProperty ("emp_ID") String emp_ID, @JsonProperty("emp_type") String emp_type, @JsonProperty("firstname") String firstname, @JsonProperty ("lastname")String lastname, @JsonProperty("address") String address, @JsonProperty("email") String email,
+			@JsonProperty ("phone") String phone, @JsonProperty ("username")String username, @JsonProperty("password") String password, @JsonProperty("authorities") List<String> authorities, @JsonProperty ("createdDate") String createdDate, @JsonProperty("lastLogin") String lastLogin,
+			@JsonProperty ("modifiedDate") String modifiedDate) {
 		this.emp_ID = emp_ID;
 		this.emp_type = emp_type;
 		this.firstname = firstname;
