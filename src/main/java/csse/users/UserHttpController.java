@@ -62,10 +62,8 @@ public class UserHttpController {
     }
     
     @DeleteMapping("/deactivate")
-    public String deactivate(@RequestBody Map<String, String> body) {
-    	String ID=body.get("Emp_ID");
-    	
-    	return service.deactivate(ID);
+    public void deactivate(@RequestBody List<ApplicationUser> users) {
+    	service.deactivate(users);
     }
     
     
