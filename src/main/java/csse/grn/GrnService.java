@@ -30,4 +30,8 @@ public class GrnService  {
     public List<Grn> fetchAll() {
         return  repository.findAll();
     }
+
+    public Grn payGrn(Grn grn) {
+        return repository.save(grn);
+    }
 }

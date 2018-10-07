@@ -33,4 +33,9 @@ public class GrnHttpController {
     public ResponseEntity createGrnEndpoint(@RequestBody Grn grn) {
         return ResponseEntity.status(HttpStatus.CREATED).body(grnService.createGrn(grn));
     }
+
+    @PutMapping("/Grn/pay")
+    public ResponseEntity<Object> payGrnEndPoint(@RequestBody Grn grn) {
+        return ResponseEntity.status(HttpStatus.OK).body(grnService.payGrn(grn));
+    }
 }

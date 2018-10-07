@@ -19,4 +19,5 @@ public interface IOrderServicesFacade {
     Grn createGrn(Grn grn);
     void deleteGrns(List<Grn> grns);
     List<Grn> getAllGrns();
+    Grn payGrn(Grn grn);
 }
