@@ -85,6 +85,11 @@ public class OrderServicesFacade implements IOrderServicesFacade {
         return grnService.saveGrn(grn);
     }
 
+    public Grn payGrn(Grn grn) {
+        grn.setPaymentStatus(GrnStatus.PAYMENT_COMPLETED.name());
+        return grnService.payGrn(grn);
+    }
+
     @Override
     public void deleteGrns(List<Grn> grns) {
         grnService.deleteGrns(grns);
