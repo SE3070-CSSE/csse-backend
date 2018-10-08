@@ -51,4 +51,14 @@ public class ItemServiceTests {
     	List<Item> allItems = itemService.fetchAll();
     	Assert.assertEquals("Approved item size should be 2", 2, allItems.size());
     }
+    
+
+    @Test
+    public void allItemsFail() throws Exception {
+    	logger.info("Running setsItemIdOnSave");
+    	Item savedItem1 =itemService.saveItem(item1);
+    	Item savedItem2 =itemService.saveItem(item2);
+    	List<Item> allItems = itemService.fetchAll();
+    	Assert.assertNotEquals("list is 2 but asked for 3", 3, allItems.size());
+    }
 }

@@ -1,0 +1,16 @@
+{
+	"emp_ID": "A50",
+    "emp_type": "Site Manager",
+    "firstname": "Mark",
+    "lastname": "Rodrigo",
+    "address": "Colombo",
+    "email": "mark99@gmail.com",
+    "phone": "0777707531",
+    "username": "Mark99",
+    "password": "Mark99",
+    "authorities": [
+        "ADMIN",
+        "SITE_MANAGER"
+    ]
+}
+
