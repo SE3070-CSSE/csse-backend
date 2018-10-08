@@ -63,7 +63,7 @@ public class OrderServiceTests {
 
     @Test
     public void negativeAllOrdersItemsAreDelivered() throws Exception {
-        logger.info("Running setsOrderIdOnSave()");
+        logger.info("Running negativeAllOrdersItemsAreDelivered()");
         boolean itemsReceived = orderService.allItemsReceived(testOrder);
         Assert.assertFalse("allItemsReceived should return false if " +
                 "some items are not delivered", itemsReceived);
@@ -71,7 +71,7 @@ public class OrderServiceTests {
 
     @Test
     public void positiveAllOrdersItemsAreDelivered() throws Exception {
-        logger.info("Running setsOrderIdOnSave()");
+        logger.info("Running positiveAllOrdersItemsAreDelivered()");
         boolean itemsReceived = orderService.allItemsReceived(allItemsReceivedOrder);
         Assert.assertTrue("allItemsReceived should return true if " +
                 "all items are delivered", itemsReceived);
