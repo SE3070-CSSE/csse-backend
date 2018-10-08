@@ -115,9 +115,7 @@ public class UserServiceTests {
       String savedUser = service.register(testAdmin);
       String savedUser1 = service.register(testUser);
       ApplicationUser user = service.findByemp("A6000");  
-      Assert.assertFalse("Negombo"== user.getAddress());
-      //expected a null pointer exceptions since empid 6000 doesnt exists and service class returns null
-
+      Assert.assertFalse("Negombo"== user.getAddress().toString());
   }
     //password reset=> pass
     @Test
@@ -127,7 +125,6 @@ public class UserServiceTests {
         String savedUser1 = service.register(testUser);
         String response = service.resetPassword("Sam99", "Sam99", "sam99", "sam99");       
         Assert.assertEquals("user's pwd is reset", "Password reset successfully", response);
-     //   Assert.assertNotEquals(unexpected, actual);
 
     }
 
